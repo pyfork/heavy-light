@@ -1,0 +1,72 @@
+# Every PR: does it change how any page looks? This run photographs main's pages and the PR's pages
+# on the same machine (4 pages x 375 and 1280 x light and dark = 16 pictures each) and compares them
+# pixel for pixel. Nothing is stored in the repo: main is the approved look.
+# Same look: green. Changed look: red, with before, after and difference in the "screens-diff" download,
+# until the owner adds the label looks-ok. A new push clears that label, so each change is approved
+# as pushed. A label added by anyone but the owner doesn't count.
+# Design-system engineer-Opus5.5-agent, 2026-11-09
+name: screens
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: write   # only to clear looks-ok when new commits arrive
+
+concurrency:
+  group: screens-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  screens:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR: ${{ github.event.pull_request.number }}
+      OWNER: ${{ github.repository_owner }}
+    steps:
+      - name: A new push clears the approval
+        if: github.event.action == 'synchronize'
+        run: |
+          if gh pr view "$PR" -R "$GITHUB_REPOSITORY" --json labels --jq '.labels[].name' | grep -qx looks-ok; then
+            gh pr edit "$PR" -R "$GITHUB_REPOSITORY" --remove-label looks-ok
+            echo "::notice::New commits: the looks-ok approval was cleared."
+          fi
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Main, beside it
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Playwright, pinned
+        run: npm install --no-save --no-package-lock @playwright/test@1.63.0 && npx playwright install --with-deps chromium
+      - name: Pictures of main
+        run: SCREENS_SIDE=base npx playwright test -c playwright.screens.config.mjs --update-snapshots=all
+      - name: Pictures of this PR, compared with main
+        id: compare
+        continue-on-error: true
+        run: SCREENS_SIDE=head npx playwright test -c playwright.screens.config.mjs --update-snapshots=none
+      - name: Before, after and difference
+        if: steps.compare.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: screens-diff
+          path: test-results/
+          retention-days: 14
+      - name: A changed look needs the owner's label
+        if: steps.compare.outcome == 'failure'
+        run: |
+          has=$(gh pr view "$PR" -R "$GITHUB_REPOSITORY" --json labels --jq '[.labels[].name] | index("looks-ok") != null')
+          who=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR/events?per_page=100" --jq '[.[] | select(.event == "labeled" and .label.name == "looks-ok")] | last | .actor.login // ""')
+          if [ "$has" = true ] && [ "$who" = "$OWNER" ]; then
+            echo "::notice::The look changed, and $OWNER approved it (looks-ok)."
+            exit 0
+          fi
+          echo "::error::The look changed. Download screens-diff from this run for before, after and difference. If the change is intended, $OWNER adds the looks-ok label.${who:+ (looks-ok was last added by $who, which doesn't count.)}"
+          exit 1

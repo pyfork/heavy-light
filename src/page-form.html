@@ -1,0 +1,238 @@
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="wrap mast-in">
+    <a class="wordmark" href="heavy-light-landing.html"><span>The layover</span><b>Halfway</b><span>city pass</span></a>
+    <button class="icon-btn menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Menu"><svg class="ico" aria-hidden="true"><use href="#i-bars-3"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="heavy-light-landing.html#cities" data-text="Cities">Cities</a>
+      <a href="heavy-light-landing.html#prices" data-text="Prices">Prices</a>
+      <a href="heavy-light-blog.html" data-text="Journal">Journal</a>
+      <a href="#states" data-text="Field states">Field states</a>
+      <a href="#plan" data-text="Plan">Plan</a>
+      <a href="#pair" data-text="Image pair">Image pair</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="wrap on-guide form-top" data-guide="left" aria-labelledby="form-h">
+    <div class="form-intro">
+      <p class="kicker">Checkout · step 1 of 2</p>
+      <h1 class="h1" id="form-h"><span class="thin">Get your</span> pass</h1>
+      <ol class="stepbar" aria-label="Progress">
+        <li class="on" aria-current="step"><b>1</b>Trip and you</li>
+        <li><b>2</b>Payment</li>
+      </ol>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <div class="status bad" id="err-summary" tabindex="-1" hidden>
+          <svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>
+          <div><b>Check <span data-count>2</span> fields</b><span>The form can't go on until these are fixed:</span><ul></ul></div>
+        </div>
+        <div class="status ok" id="done" tabindex="-1" hidden>
+          <svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <div><b>Pass held for 30 minutes</b><span>This is a demo: nothing was sent and nothing will be charged. Step 2 would take payment.</span></div>
+        </div>
+
+        <form class="form-card" id="pass-form" novalidate>
+          <fieldset class="fs">
+            <legend class="h3"><span class="thin">01</span> Your trip</legend>
+
+            <div class="field" data-for="city" data-name="Hub city">
+              <span class="label" id="city-l">Hub city <span class="req" aria-hidden="true">*</span></span><div class="pick" data-placeholder="Choose a city"><button type="button" class="input pick-btn" id="city" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="city-l city" aria-describedby="city-err"><span class="pick-val">Choose a city</span><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><ul class="pick-list" role="listbox" tabindex="-1" aria-labelledby="city-l" hidden><li role="option" data-value="Kuala Lumpur"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Kuala Lumpur</span><small>KUL</small></li><li role="option" data-value="Bangkok"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Bangkok</span><small>BKK</small></li><li role="option" data-value="Singapore"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Singapore</span><small>SIN</small></li><li role="option" data-value="Jakarta"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Jakarta</span><small>CGK</small></li><li role="option" data-value="Riyadh"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Riyadh</span><small>RUH</small></li><li role="option" data-value="Doha"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Doha</span><small>DOH</small></li><li role="option" data-value="Dubai"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Dubai</span><small>DXB</small></li></ul><input type="hidden" name="city" value=""></div><p class="err" id="city-err"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>Choose the city you land in.</p>
+            </div>
+
+            <div class="row2">
+              <div class="field" data-for="date" data-name="Landing date">
+                <span class="label" id="date-l">Landing date <span class="req" aria-hidden="true">*</span></span><div class="dp" data-placeholder="Choose a date"><button type="button" class="input dp-btn" id="date" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="date-l date" aria-describedby="date-err"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"/></svg><span class="dp-val">Choose a date</span></button><div class="dp-pop" role="dialog" aria-label="Choose the landing date" hidden><div class="dp-head"><button type="button" class="icon-btn dp-prev" aria-label="Previous month"><svg class="ico" aria-hidden="true"><use href="#i-chevron-left"/></svg></button><button type="button" class="icon-btn dp-next" aria-label="Next month"><svg class="ico" aria-hidden="true"><use href="#i-chevron-right"/></svg></button></div><div class="dp-months"></div><div class="dp-foot"><button type="button" class="btn line small dp-today">Today</button><button type="button" class="btn small dp-close">Done</button></div></div><input type="hidden" name="date" value=""></div><p class="err" id="date-err"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>Add the date you land.</p>
+              </div>
+              <div class="field">
+                <span class="label" id="time-l">Landing time</span><div class="pick" data-placeholder="Choose a time" data-times><button type="button" class="input pick-btn" id="time" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="time-l time"><span class="pick-val">Choose a time</span><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><ul class="pick-list" role="listbox" tabindex="-1" aria-labelledby="time-l" hidden></ul><input type="hidden" name="time" value=""></div>
+                <p class="hint" id="time-hint">Local time, every 30 minutes. Leave blank if you're not sure yet.</p>
+              </div>
+            </div>
+
+            <fieldset class="field">
+              <legend class="label">Pass length</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="hours" value="24" data-price="39"><span class="box"></span><b>24 hours</b><small>$39 · 4 landmarks</small></label>
+                <label class="choice"><input type="radio" name="hours" value="48" data-price="59" checked><span class="box"></span><b>48 hours</b><small>$59 · all landmarks</small></label>
+                <label class="choice"><input type="radio" name="hours" value="72" data-price="79"><span class="box"></span><b>72 hours</b><small>$79 · plus a day trip</small></label>
+              </div>
+            </fieldset>
+
+            <div class="row2">
+              <div class="field">
+                <span class="label" id="adults-l">Adults</span>
+                <div class="stepper" data-stepper data-min="1" data-max="9" role="group" aria-labelledby="adults-l">
+                  <button type="button" data-step="-1" aria-label="One adult fewer"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                  <output name="adults" aria-live="polite">2</output>
+                  <button type="button" data-step="1" aria-label="One adult more"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                </div>
+              </div>
+              <div class="field">
+                <span class="label" id="kids-l">Children <span class="thin">(half price)</span></span>
+                <div class="stepper" data-stepper data-min="0" data-max="9" role="group" aria-labelledby="kids-l">
+                  <button type="button" data-step="-1" aria-label="One child fewer"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                  <output name="kids" aria-live="polite">0</output>
+                  <button type="button" data-step="1" aria-label="One child more"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fs">
+            <legend class="h3"><span class="thin">02</span> About you</legend>
+            <div class="field" data-for="name" data-name="Full name">
+              <label class="label" for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="name" name="name" autocomplete="name" required placeholder="As on your passport" aria-describedby="name-err">
+              <p class="err" id="name-err"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>Add your name as it is on your passport.</p>
+            </div>
+            <div class="row2">
+              <div class="field" data-for="email" data-name="Email">
+                <label class="label" for="email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-describedby="email-hint email-err">
+                <p class="hint" id="email-hint">Your pass and locker codes go here.</p>
+                <p class="err" id="email-err"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>Enter an email like name@example.com.</p>
+              </div>
+              <div class="field">
+                <label class="label" for="tel">Mobile</label>
+                <div class="with-addon">
+                  <span class="sr" id="cc-l">Country code</span><div class="pick" data-placeholder="+60"><button type="button" class="input pick-btn" id="cc" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cc-l cc"><span class="pick-val">+60</span><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><ul class="pick-list" role="listbox" tabindex="-1" aria-labelledby="cc-l" hidden><li role="option" data-value="+60"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+60</span><small>MY</small></li><li role="option" data-value="+65"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+65</span><small>SG</small></li><li role="option" data-value="+66"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+66</span><small>TH</small></li><li role="option" data-value="+62"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+62</span><small>ID</small></li><li role="option" data-value="+966"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+966</span><small>SA</small></li><li role="option" data-value="+974"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+974</span><small>QA</small></li><li role="option" data-value="+971"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+971</span><small>AE</small></li><li role="option" data-value="+44"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+44</span><small>UK</small></li><li role="option" data-value="+1"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>+1</span><small>US</small></li></ul><input type="hidden" name="cc" value="+60"></div>
+                  <input class="input" id="tel" name="tel" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="12 345 6789">
+                </div>
+              </div>
+            </div>
+            <label class="switch"><input type="checkbox" name="remind" checked><span class="track"></span><span class="txt">Text me a plan an hour before I land</span></label>
+            <label class="check"><input type="checkbox" name="locker" data-addon="6"><span class="box"></span><span class="txt">Add a larger locker, +$6</span></label>
+            <div class="field">
+              <label class="label" for="notes">Anything we should know?</label>
+              <textarea class="textarea" id="notes" name="notes" maxlength="280" placeholder="Step-free routes, a pram, a tight connection…" aria-describedby="notes-count"></textarea>
+              <p class="hint counter" id="notes-count" aria-live="polite"><span>0</span> of 280 characters</p>
+            </div>
+            <div class="field" data-for="terms" data-name="Pass terms">
+              <label class="check"><input type="checkbox" id="terms" name="terms" required aria-describedby="terms-err"><span class="box"></span><span class="txt">I accept the pass terms <span class="req" aria-hidden="true">*</span></span></label>
+              <p class="err" id="terms-err"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>Accept the terms to hold a pass.</p>
+            </div>
+          </fieldset>
+
+          <div class="btn-row form-actions">
+            <button class="btn" type="submit">Hold my pass<svg class="ico go" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+            <button class="btn line" type="reset">Clear</button>
+          </div>
+          <p class="fine">Fields with <span class="req">*</span> are needed. Demo form: nothing leaves this page.</p>
+        </form>
+      </div>
+
+      <aside class="summary" aria-labelledby="sum-h">
+        <div class="art-tile" style="--tile: var(--blk-1)">
+          <figure class="art" data-art="padlock" data-noblocks data-city=""></figure>
+          <figure class="art manual-draw" data-art="my" data-noblocks data-city="Kuala Lumpur" hidden></figure>
+          <figure class="art manual-draw" data-art="th" data-noblocks data-city="Bangkok" hidden></figure>
+          <figure class="art manual-draw" data-art="sg" data-noblocks data-city="Singapore" hidden></figure>
+          <figure class="art manual-draw" data-art="id" data-noblocks data-city="Jakarta" hidden></figure>
+          <figure class="art manual-draw" data-art="sa" data-noblocks data-city="Riyadh" hidden></figure>
+          <figure class="art manual-draw" data-art="qa" data-noblocks data-city="Doha" hidden></figure>
+          <figure class="art manual-draw" data-art="ae" data-noblocks data-city="Dubai" hidden></figure>
+        </div>
+        <div class="summary-in">
+          <h2 class="label" id="sum-h">Your pass</h2>
+          <dl class="lines">
+            <div><dt>City</dt><dd data-sum="city">Not chosen</dd></div>
+            <div><dt>Length</dt><dd data-sum="hours">48 hours</dd></div>
+            <div><dt>Travellers</dt><dd data-sum="people">2 adults</dd></div>
+            <div><dt>Extras</dt><dd data-sum="extras">None</dd></div>
+          </dl>
+          <p class="total"><span class="thin">Total</span> <b data-sum="total">$118</b></p>
+          <p class="meta"><svg class="ico" aria-hidden="true"><use href="#i-lock-closed"/></svg> Your details stay on this page. Sample prices.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <section id="states" class="wrap on-guide" data-guide="right" aria-labelledby="states-h">
+    <div class="sec-head">
+      <p class="kicker">Reference</p>
+      <h2 class="h2" id="states-h"><span class="thin">Every field,</span> every state.</h2>
+      <p class="dek">One input, seven states. The edge does the talking: grey at rest, darker under the pointer, green with a halo on focus, red with a bar and a sentence when something is wrong.</p>
+    </div>
+    <div class="states">
+      <div class="field"><label class="label" for="s1">Default</label><input class="input" id="s1" placeholder="Placeholder in light italic"></div>
+      <div class="field"><label class="label" for="s2">Hover</label><input class="input is-hover" id="s2" value="Edge goes one step darker"></div>
+      <div class="field"><label class="label" for="s3">Focus</label><input class="input is-focus" id="s3" value="2px green and a soft halo"></div>
+      <div class="field valid"><label class="label" for="s4">Valid</label><input class="input" id="s4" value="name@example.com"><p class="hint"><svg class="ico ok-ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Looks right</p></div>
+      <div class="field invalid"><label class="label" for="s5">Error</label><input class="input" id="s5" value="name.example.com" aria-invalid="true" aria-describedby="s5-err"><p class="err" id="s5-err"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg>Enter an email like name@example.com.</p></div>
+      <div class="field"><label class="label" for="s6">Disabled</label><input class="input" id="s6" value="Dashed edge, no pointer" disabled></div>
+      <div class="field"><label class="label" for="s7">Read only</label><input class="input" id="s7" value="HW-48-KUL-2026" readonly></div>
+      <div class="field"><span class="label">Choices</span><div class="choice-demo"><label class="check"><input type="checkbox" checked><span class="box"></span><span class="txt">Ticked</span></label><label class="check"><input type="checkbox"><span class="box"></span><span class="txt">Not ticked</span></label><label class="check radio"><input type="radio" name="rd" checked><span class="box"></span><span class="txt">Radio on</span></label><label class="check"><input type="checkbox" disabled><span class="box"></span><span class="txt">Disabled</span></label></div></div>
+    </div>
+    <div class="state-msgs">
+      <div class="status ok"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg><div><b>Saved</b><span>Success: the word and the icon carry it, the green only confirms.</span></div></div>
+      <div class="status warn"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-triangle"/></svg><div><b>Flight changed</b><span>Warning: something needs a look, nothing is lost.</span></div></div>
+      <div class="status bad"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg><div><b>Payment failed</b><span>Error: say what happened and what to do next.</span></div></div>
+      <div class="status info"><svg class="ico" aria-hidden="true"><use href="#i-information-circle"/></svg><div><b>Good to know</b><span>Info: neutral news, no action needed.</span></div></div>
+    </div>
+  </section>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <section id="plan" class="wrap on-guide" data-guide="left" aria-labelledby="plan-h">
+    <div class="sec-head">
+      <p class="kicker">Pick list</p>
+      <h2 class="h2" id="plan-h"><span class="thin">Plan</span> your layover</h2>
+      <p class="dek">Tick things off as you go. Your ticks stay in this browser, so the list is still there when you land.</p>
+    </div>
+    <div class="picklist" data-picklist="layover"><div class="pl-cols"><fieldset class="pl-col"><legend><small>Before you land</small><b>On the plane</b></legend><label class="check"><input type="checkbox" data-k="0-0"><span class="box"></span><span class="txt">Check if your passport needs a transit visa</span></label><label class="check"><input type="checkbox" data-k="0-1"><span class="box"></span><span class="txt">Save the pass and the map offline</span></label><label class="check"><input type="checkbox" data-k="0-2"><span class="box"></span><span class="txt">Note your next flight&#x27;s boarding time</span></label></fieldset><fieldset class="pl-col"><legend><small>Hours one to three</small><b>In the city</b></legend><label class="check"><input type="checkbox" data-k="1-0"><span class="box"></span><span class="txt">Drop your bag at the station locker</span></label><label class="check"><input type="checkbox" data-k="1-1"><span class="box"></span><span class="txt">Book two timed entries</span></label><label class="check"><input type="checkbox" data-k="1-2"><span class="box"></span><span class="txt">Eat something you can&#x27;t get at home</span></label></fieldset><fieldset class="pl-col"><legend><small>The last two hours</small><b>Before you fly</b></legend><label class="check"><input type="checkbox" data-k="2-0"><span class="box"></span><span class="txt">Collect your bag</span></label><label class="check"><input type="checkbox" data-k="2-1"><span class="box"></span><span class="txt">Be back at the airport two hours early</span></label><label class="check"><input type="checkbox" data-k="2-2"><span class="box"></span><span class="txt">Find your gate before you shop</span></label></fieldset></div><div class="pl-prog"><span class="pl-bar" aria-hidden="true"><i data-bar></i></span><span data-count aria-live="polite"></span><button class="btn line small" type="button" data-reset><svg class="ico" aria-hidden="true"><use href="#i-arrow-path"/></svg>Clear</button></div><p class="hint">Ticks are kept in this browser only. Nothing is sent.</p></div>
+  </section>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <section id="pair" class="wrap on-guide" data-guide="right" aria-labelledby="pair-h">
+    <div class="pair-grid">
+      <div class="sec-head">
+        <p class="kicker">Image pair</p>
+        <h2 class="h2" id="pair-h"><span class="thin">Send us</span> a before and after.</h2>
+        <p class="dek">Two boxes tagged LEFT and RIGHT, a round swap between them, paste goes to the green box. Pictures stay on your device.</p>
+      </div>
+      <div class="panel pair-card" id="pair-card">
+        <div class="modes" role="group" aria-label="Layout">
+          <button type="button" class="check mode" aria-pressed="true" data-mode="h"><span class="box"></span><span class="txt">Horizontal</span></button>
+          <button type="button" class="check mode" aria-pressed="false" data-mode="v"><span class="box"></span><span class="txt">Vertical</span></button>
+        </div>
+        <div class="slots" data-mode="h">
+          <div class="slot target" data-slot="a"><span class="tag">Left</span><div class="ph">paste or drop<label class="btn line small"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up-tray"/></svg>Browse<input type="file" accept="image/*" class="sr"></label></div></div>
+          <button type="button" class="swap" aria-label="Swap left and right" title="Swap left and right"><svg class="ico" aria-hidden="true"><use href="#i-arrows-right-left"/></svg></button>
+          <div class="slot" data-slot="b"><span class="tag">Right</span><div class="ph">paste or drop<label class="btn line small"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up-tray"/></svg>Browse<input type="file" accept="image/*" class="sr"></label></div></div>
+        </div>
+        <p class="paste-note">Paste goes to <b data-target-name>LEFT</b></p>
+        <div class="btn-row"><button class="btn" type="button" data-send disabled>Send pair<svg class="ico go" aria-hidden="true"><use href="#i-arrow-right"/></svg></button><span class="meta" data-pair-msg aria-live="polite"></span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><a class="wordmark" href="heavy-light-landing.html"><span>The layover</span><b>Halfway</b><span>city pass</span></a></div>
+    <div><h3>The pass</h3><ul><li><a href="heavy-light-landing.html#what">What's included</a></li><li><a href="heavy-light-landing.html#cities">Cities</a></li><li><a href="heavy-light-landing.html#prices">Prices</a></li></ul></div>
+    <div><h3>Read more</h3><ul><li><a href="heavy-light-blog.html">Journal</a></li><li><a href="heavy-light-system.html">Design system</a></li></ul></div>
+    <div>
+      <h3>Theme</h3>
+      <div class="theme" role="group" aria-label="Theme">
+        <button type="button" data-pick="light" aria-label="Light" title="Light"><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg></button>
+        <button type="button" data-pick="dark" aria-label="Dark" title="Dark"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg></button>
+        <button type="button" data-pick="device" aria-label="Device setting" title="Device setting"><svg class="ico" aria-hidden="true"><use href="#i-computer-desktop"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-base"><span>Demo content. Halfway, its prices and savings are made up. Built with Heavy Light.</span>
+    <details class="credits"><summary>Drawing credits</summary><ul>
+{{CREDITS}}
+    </ul></details></div>
+</footer>

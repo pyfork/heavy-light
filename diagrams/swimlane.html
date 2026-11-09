@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A disciplinary case, from first report to outcome</title>
+<style>:root {
+  color-scheme: light dark;
+
+  /* surfaces */
+  --paper: light-dark(#ffffff, #101511);
+  --panel: light-dark(#f6f6f6, #1a211c);
+  --panel-2: light-dark(#ebebeb, #222a24);
+  --field: light-dark(#ffffff, #121813);
+  --deep: light-dark(#323237, #0a0d0b);
+  --on-deep: #f2f2f2;
+  --on-deep-dim: #b9b9be;
+
+  /* ink */
+  --ink: light-dark(#222222, #eeeeee);
+  --ink-2: light-dark(#555555, #b0b0b0);
+  --muted: light-dark(#6b6b6b, #8f978f);
+  --edge: light-dark(#d6d6d6, #3a443d);
+  --edge-hi: light-dark(#888888, #7a857d);
+
+  /* brand: green acts, orange confirms, mint labels, coral celebrates */
+  --act: light-dark(#2f7d58, #5cbf8f);        /* darkened to pass AA under white text */
+  --act-hover: light-dark(#2c622c, #79d0a5);
+  --on-act: light-dark(#ffffff, #0b140e);
+  --link: light-dark(#2c622c, #6cc196);
+  --mint: light-dark(#d4e4dc, #23382c);
+  --on-mint: light-dark(#2c622c, #8fd3b0);
+  --coral: light-dark(#e5675f, #f08a83);
+  --on-coral: light-dark(#ffffff, #101511);
+  --tick: light-dark(#d9681f, #f0a060);
+
+  /* flat colour blocks under line drawings */
+  --blk-1: light-dark(#bfdccb, #2c4a3a);      /* sea glass */
+  --blk-2: light-dark(#f3b4ab, #6a3a35);      /* coral */
+  --blk-3: light-dark(#f0cf8a, #5e4f26);      /* ochre */
+  --blk-4: light-dark(#b9d2de, #2b4654);      /* harbour */
+  --line: light-dark(#222222, #eeeeee);
+
+  /* status: always with an icon and a word, never colour alone */
+  --ok: light-dark(#2f7d58, #6cc196);
+  --warn: light-dark(#9a5b00, #e0a54a);
+  --bad: light-dark(#c23b32, #f0857c);
+  --focus: var(--link);
+
+  /* type: hierarchy comes from weight, light next to heavy on every line */
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --read: "Iowan Old Style", Charter, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --w-thin: 200;  --w-light: 300;  --w-body: 400;  --w-bold: 700;  --w-label: 800;  --w-heavy: 900;
+  --fs-xs: 13px;  --fs-s: 15px;  --fs-m: 18px;  --fs-l: 20px;  --fs-xl: 24px;
+  --fs-2xl: 32px;  --fs-3xl: 44px;  --fs-4xl: clamp(40px, 5.2vw, 64px);  --fs-5xl: clamp(48px, 8vw, 104px);
+
+  /* space: a 4px grid */
+  --s1: 4px;  --s2: 8px;  --s3: 12px;  --s4: 16px;  --s5: 24px;  --s6: 32px;
+  --s7: 40px; --s8: 48px; --s9: 64px; --s10: 96px; --s11: 140px;
+  --wrap: 1200px;
+  --gut: 40px;
+  --read-w: 640px;
+
+  /* edges, depth, motion, line */
+  --r: 0;
+  --r-round: 999px;
+  --drop: 0 4px 4px rgba(0, 0, 0, 0.1);
+  --t-fast: 150ms;  --t-base: 300ms;  --t-slow: 900ms;
+  --ease: cubic-bezier(.65, .05, .36, 1);
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --line-w: 2.1px;
+  --guide-w: 1.6px;
+}
+body{margin:0;padding:32px 16px;background:var(--paper);color:var(--ink);font-family:var(--sans)}
+.wrap{max-width:1060px;margin:0 auto} h1{font-weight:900;letter-spacing:-.02em;margin:0 0 24px} .scroll-x{overflow-x:auto}
+/* diagram skin (diagram-design rules, page tokens) */
+.diagram { margin: 0; }
+.diagram .scroll-x { padding-bottom: 8px; }
+.dg { width: 100%; height: auto; }
+@media (max-width: 760px) { .dg { min-width: var(--dg-w); } }
+.dg text { font-family: var(--sans); }
+.dg .d-mask { fill: var(--paper); }
+.dg .d-box { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+.dg .d-box.focal { fill: var(--mint); stroke: var(--act); stroke-width: 2; }
+.dg .d-name { fill: var(--ink); font-size: 13px; font-weight: var(--w-heavy); }
+.dg .d-sub { fill: var(--muted); font-family: var(--mono); font-size: 10px; }
+.dg .d-arrow { fill: none; stroke: var(--edge-hi); stroke-width: 1.3; }
+.dg .d-arrow.focal { stroke: var(--act); stroke-width: 2; }
+.dg .d-head { fill: var(--edge-hi); }
+.dg .d-head.focal { fill: var(--act); }
+.dg .d-lbl { fill: var(--ink-2); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; }
+.dg .d-lbl-mask { fill: var(--paper); }
+.dg .d-legend { fill: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .12em; }
+.dg .d-rule { stroke: var(--edge); stroke-width: 1; }
+.dg .d-dot { fill: var(--ink); }
+.dg .d-lane-fill { fill: var(--panel); }
+.dg .d-lane-label { fill: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; }
+
+</style></head>
+<body><main class="wrap"><h1>A disciplinary case, from first report to outcome</h1><figure class="diagram"><div class="scroll-x"><svg class="dg" viewBox="0 0 1016 360" role="img" aria-labelledby="dg-lane-title dg-lane-desc" style="--dg-w:1016px" xmlns="http://www.w3.org/2000/svg"><title id="dg-lane-title">A disciplinary case, from first report to outcome</title><desc id="dg-lane-desc">Swimlane across manager, HR and employee: the manager records the facts, HR opens the file and puts the charge in writing, the employee answers at a hearing, HR decides, and the employee gets the outcome in writing with a right of appeal.</desc><line class="d-rule" x1="0" y1="100" x2="1016" y2="100"/><text class="d-lane-label" x="12" y="22">MANAGER</text><rect class="d-lane-fill" x="0" y="100" width="1016" height="100"/><line class="d-rule" x1="0" y1="200" x2="1016" y2="200"/><text class="d-lane-label" x="12" y="122">HR / INVESTIGATOR</text><line class="d-rule" x1="0" y1="300" x2="1016" y2="300"/><text class="d-lane-label" x="12" y="222">EMPLOYEE</text><line class="d-rule" x1="8" y1="308" x2="1008" y2="308"/><rect class="d-box" x="8" y="320" width="24" height="14" rx="3"/><text class="d-legend" x="40" y="331">STEP, IN ITS OWNER'S LANE</text><rect class="d-box focal" x="243" y="320" width="24" height="14" rx="3"/><text class="d-legend" x="275" y="331">THE HEARING</text><line class="d-arrow" x1="380" y1="327" x2="408" y2="327"/><text class="d-legend" x="416" y="331">HANDOFF</text><line class="d-arrow focal" x1="493" y1="327" x2="521" y2="327"/><text class="d-legend" x="529" y="331">THE HANDOFF THAT STARTS THE CLOCK</text><path class="d-arrow" d="M248,50 L334,50 Q342,50 342,58 L342,114"/><polygon class="d-head" points="342,122 338,114 346,114"/><path class="d-arrow" d="M400,150 L428,150"/><polygon class="d-head" points="436,150 428,154 428,146"/><path class="d-arrow focal" d="M552,150 L638,150 Q646,150 646,158 L646,214"/><polygon class="d-head focal" points="646,222 642,214 650,214"/><path class="d-arrow" d="M704,250 L790,250 Q798,250 798,242 L798,186"/><polygon class="d-head" points="798,178 802,186 794,186"/><path class="d-arrow" d="M856,150 L942,150 Q950,150 950,158 L950,214"/><polygon class="d-head" points="950,222 946,214 954,214"/><rect class="d-lbl-mask" x="252" y="31" width="86" height="12" rx="2"/><text class="d-lbl" x="295" y="40" text-anchor="middle">START PROMPTLY</text><rect class="d-lbl-mask" x="562" y="131" width="75" height="12" rx="2"/><text class="d-lbl" x="599" y="140" text-anchor="middle">NOTICE GIVEN</text><rect class="d-lbl-mask" x="879" y="131" width="47" height="12" rx="2"/><text class="d-lbl" x="903" y="140" text-anchor="middle">REASONS</text><rect class="d-mask" x="132" y="22" width="116" height="56" rx="6"/><rect class="d-box " x="132" y="22" width="116" height="56" rx="6"/><text class="d-name" x="190.0" y="48.0" text-anchor="middle">Record the facts</text><text class="d-sub" x="190.0" y="64.0" text-anchor="middle">who · what · when</text><rect class="d-mask" x="284" y="122" width="116" height="56" rx="6"/><rect class="d-box " x="284" y="122" width="116" height="56" rx="6"/><text class="d-name" x="342.0" y="148.0" text-anchor="middle">Open the file</text><text class="d-sub" x="342.0" y="164.0" text-anchor="middle">one main allegation</text><rect class="d-mask" x="436" y="122" width="116" height="56" rx="6"/><rect class="d-box " x="436" y="122" width="116" height="56" rx="6"/><text class="d-name" x="494.0" y="148.0" text-anchor="middle">Charge in writing</text><text class="d-sub" x="494.0" y="164.0" text-anchor="middle">facts + evidence</text><rect class="d-mask" x="588" y="222" width="116" height="56" rx="6"/><rect class="d-box focal" x="588" y="222" width="116" height="56" rx="6"/><text class="d-name" x="646.0" y="248.0" text-anchor="middle">Hear the reply</text><text class="d-sub" x="646.0" y="264.0" text-anchor="middle">with a companion</text><rect class="d-mask" x="740" y="122" width="116" height="56" rx="6"/><rect class="d-box " x="740" y="122" width="116" height="56" rx="6"/><text class="d-name" x="798.0" y="148.0" text-anchor="middle">Decide</text><text class="d-sub" x="798.0" y="164.0" text-anchor="middle">reasoned outcome</text><rect class="d-mask" x="892" y="222" width="116" height="56" rx="6"/><rect class="d-box " x="892" y="222" width="116" height="56" rx="6"/><text class="d-name" x="950.0" y="248.0" text-anchor="middle">Outcome, appeal</text><text class="d-sub" x="950.0" y="264.0" text-anchor="middle">in writing</text></svg></div></figure></main></body></html>

@@ -1,0 +1,246 @@
+<a class="skip" href="#article">Skip to the article</a>
+<header class="mast">
+  <div class="wrap mast-in">
+    <a class="wordmark" href="#top"><span>The Halfway</span><b>Journal</b></a>
+    <button class="icon-btn menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Menu"><svg class="ico" aria-hidden="true"><use href="#i-bars-3"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#index" data-text="All stories">All stories</a>
+      <a href="#article" data-text="Behind the line">Behind the line</a>
+      <a href="heavy-light-landing.html#cities" data-text="Cities">Cities</a>
+      <a class="btn small" href="heavy-light-form.html">Get a pass<svg class="ico" aria-hidden="true"><use href="#i-ticket"/></svg></a>
+    </nav>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</header>
+
+<main id="top">
+
+  <section id="index" class="wrap journal" aria-labelledby="journal-h">
+    <div class="journal-head">
+      <p class="kicker">The Halfway Journal</p>
+      <h1 class="display" id="journal-h"><span class="thin">Notes from</span> the hours <span class="thin">in between.</span></h1>
+      <div class="chips" role="group" aria-label="Filter stories" data-filter=".post">
+        <button type="button" aria-pressed="true" data-cat="all">All</button>
+        <button type="button" aria-pressed="false" data-cat="line">Behind the line</button>
+        <button type="button" aria-pressed="false" data-cat="guide">Guides</button>
+        <button type="button" aria-pressed="false" data-cat="city">Cities</button>
+      </div>
+    </div>
+
+    <ol class="posts">
+      <li class="post lead" data-cat="line">
+        <a class="post-link" href="#article">
+          <div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="my" data-noblocks></figure></div>
+          <div class="post-txt">
+            <p class="kicker">Behind the line · 7 min</p>
+            <h2 class="h2"><span class="thin">One line through</span> seven cities</h2>
+            <p class="dek">How a photograph becomes a single unbroken stroke: OpenCV, a skeleton, and a travelling salesman with a pen.</p>
+            <p class="meta">8 November 2026</p>
+          </div>
+        </a>
+      </li>
+      <li class="post" data-cat="guide"><a class="post-link" href="#index">
+        <div class="art-tile" style="--tile: var(--blk-1)"><figure class="art" data-art="suitcase" data-noblocks></figure></div>
+        <p class="kicker">Guides · 5 min</p><h3 class="h3"><span class="thin">Packing for a</span> nine-hour layover</h3><p class="meta">1 November 2026</p></a></li>
+      <li class="post" data-cat="guide"><a class="post-link" href="#index">
+        <div class="art-tile" style="--tile: var(--blk-2)"><figure class="art" data-art="phone" data-noblocks></figure></div>
+        <p class="kicker">Guides · 4 min</p><h3 class="h3"><span class="thin">The phone</span> is the pass</h3><p class="meta">25 October 2026</p></a></li>
+      <li class="post" data-cat="city"><a class="post-link" href="#index">
+        <div class="art-tile" style="--tile: var(--blk-4)"><figure class="art" data-art="padlock" data-noblocks></figure></div>
+        <p class="kicker">Cities · 6 min</p><h3 class="h3"><span class="thin">Lockers and</span> left luggage, hub by hub</h3><p class="meta">18 October 2026</p></a></li>
+      <li class="post" data-cat="guide"><a class="post-link" href="#index">
+        <div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="laptop" data-noblocks></figure></div>
+        <p class="kicker">Guides · 3 min</p><h3 class="h3"><span class="thin">Working from</span> a transit lounge</h3><p class="meta">11 October 2026</p></a></li>
+      <li class="post" data-cat="city"><a class="post-link" href="#index">
+        <div class="art-tile" style="--tile: var(--blk-1)"><figure class="art" data-art="handshake" data-noblocks></figure></div>
+        <p class="kicker">Cities · 4 min</p><h3 class="h3"><span class="thin">Hello in</span> seven languages</h3><p class="meta">4 October 2026</p></a></li>
+    </ol>
+    <p class="fine">Demo journal: only the first story is written; the others show the card pattern.</p>
+  </section>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <div class="wrap article-grid" id="article" data-progress>
+    <nav class="rail" data-toc aria-label="In this article">
+      <span class="label">In this article</span>
+      <ol class="toc"><span class="spine" aria-hidden="true"></span>
+        <li><a href="#s-photo">Start with a photograph</a></li>
+        <li><a href="#s-route">The whole route</a></li>
+        <li><a href="#s-cut">Cut the subject out</a></li>
+        <li><a href="#s-edge">Find the edges</a></li>
+        <li><a href="#s-spine">Thin it to a spine</a></li>
+        <li><a href="#s-pen">One pen, few lifts</a></li>
+        <li><a href="#s-numbers">What the numbers say</a></li>
+        <li><a href="#s-check">Self-check</a></li>
+        <li><a href="#s-terms">Key terms</a></li>
+        <li><a href="#s-credits">Credits</a></li>
+      </ol>
+    </nav>
+
+    <article class="post-body" aria-labelledby="post-h">
+      <header class="post-head">
+        <p class="kicker">Behind the line</p>
+        <h1 class="h1" id="post-h"><span class="thin">One line through</span> seven cities</h1>
+        <p class="standfirst">Every drawing on our pages is a single stroke of ink, traced by a program from a real photograph. Here is how, step by step, with the numbers.</p>
+        <p class="meta byline">By the Halfway studio · 8 November 2026 · 7 min read</p>
+      </header>
+
+      <figure class="fig pairfig">
+        <div class="pair">
+          <div class="pair-l"><span class="tag">Left</span><img src="{{STAGE:my-photo}}" alt="Photograph of the Sultan Abdul Samad Building clock tower in Kuala Lumpur." loading="lazy"></div>
+          <div class="pair-r"><span class="tag">Right</span><div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="my"></figure></div></div>
+        </div>
+        <figcaption><span><b>Same building, two ways.</b> The photo on the left, and the line our tracer drew from it on the right.</span><span class="credit">Photo: CEphoto, Uwe Aranas, CC BY-SA 3.0</span></figcaption>
+      </figure>
+
+      <section class="prose" id="s-photo" aria-labelledby="h-photo">
+        <h2 class="h3" id="h-photo"><span class="thin">01</span> Start with a photograph</h2>
+        <p class="drop">The drawings start as ordinary photographs from Wikimedia Commons, all under open licences: seven landmarks, two skylines and a handful of things travellers carry. We wanted the lines to come from real buildings, not from a stock illustration, so each one keeps the lean of the real tower and the real number of arches.</p>
+        <p>A photograph is the worst possible input for a pen. It has sky, haze, people, a palm tree in front of the arches. Most of the work is deciding what to throw away.</p>
+        <aside class="mnote"><b>Why not trace by hand?</b> We could, and it would look better in places. But a program gives every drawing the same hand, and it redraws all of them in under a minute when we change one setting.</aside>
+        <ul class="contact" aria-label="The seven landmark photographs">
+          <li><img src="{{IMG:qa}}" alt="" loading="lazy"><span>Doha</span></li>
+          <li><img src="{{IMG:my}}" alt="" loading="lazy"><span>Kuala Lumpur</span></li>
+          <li><img src="{{IMG:id}}" alt="" loading="lazy"><span>Jakarta</span></li>
+          <li><img src="{{IMG:sg}}" alt="" loading="lazy"><span>Singapore</span></li>
+          <li><img src="{{IMG:th}}" alt="" loading="lazy"><span>Bangkok</span></li>
+          <li><img src="{{IMG:sa}}" alt="" loading="lazy"><span>Riyadh</span></li>
+          <li><img src="{{IMG:ae}}" alt="" loading="lazy"><span>Dubai</span></li>
+        </ul>
+      </section>
+
+      <section class="prose" id="s-route" aria-labelledby="h-route">
+        <h2 class="h3" id="h-route"><span class="thin">02</span> The whole route, on one page</h2>
+        <p>Three kinds of photo need three ways in. After that, every drawing takes the same road: a skeleton, a walk, a single pen path, an SVG file.</p>
+        <figure class="diagram wide">
+          <div class="scroll-x" tabindex="0" role="region" aria-label="Tracing pipeline diagram, scrolls sideways">{{DIAGRAM:pipeline}}</div>
+          <figcaption class="fine">Swipe sideways on a phone to see the whole route.</figcaption>
+        </figure>
+      </section>
+
+      <section class="prose" id="s-cut" aria-labelledby="h-cut">
+        <h2 class="h3" id="h-cut"><span class="thin">03</span> Cut the subject out</h2>
+        <p>For a landmark against the sky we use GrabCut. We draw a loose box round the building, tell the program the top rows are always sky, and let it work out which pixels belong to the building and which to the sky. Pixels close to the sky's colour start out as probably sky; a palm tree or a second tower gets a box of its own that says "background, for sure".</p>
+        <p>Objects on a plain backdrop are easier: the backdrop's colour is whatever runs round the border, and the object is whatever differs from it. A dark telephone on white needs only a brightness threshold. A skyline at sunset is easiest of all: the city is dark, the sky is bright, and the top edge of the dark part is the drawing.</p>
+        <div class="stages">
+          <figure><img class="photo" src="{{STAGE:my-photo}}" alt="Stage 1: the cropped photo." loading="lazy"><figcaption>Photo</figcaption></figure>
+          <figure><img src="{{STAGE:my-silhouette}}" alt="Stage 2: the building as a flat grey silhouette." loading="lazy"><figcaption>Silhouette</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="prose" id="s-edge" aria-labelledby="h-edge">
+        <h2 class="h3" id="h-edge"><span class="thin">04</span> Find the edges</h2>
+        <p>The silhouette gives the outline. The detail inside it, the clock face, the arches, the window bands, comes from edge detection: the Canny detector marks pixels where brightness changes sharply, and we keep only the edges that are long enough to mean something. Short edges are noise: brick texture, a sign, a leaf.</p>
+        <aside class="mnote"><b>The laptop problem.</b> Its keyboard is all short edges. The skeleton walk found 1,697 pieces; after the length filter, 132 were left to draw.</aside>
+        <div class="stages">
+          <figure><img src="{{STAGE:my-edges}}" alt="Stage 3: outline plus the longer interior edges, in black on white." loading="lazy"><figcaption>Outline and edges</figcaption></figure>
+          <figure><img src="{{STAGE:my-skeleton}}" alt="Stage 4: the same lines thinned to one pixel wide." loading="lazy"><figcaption>Skeleton</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="prose" id="s-spine" aria-labelledby="h-spine">
+        <h2 class="h3" id="h-spine"><span class="thin">05</span> Thin it to a spine</h2>
+        <p>Edges come out a few pixels thick, and a pen can't follow a smear. Zhang–Suen thinning peels pixels off both sides of every line, again and again, until only the centre is left: a skeleton one pixel wide that still connects everything it connected before.</p>
+        <p>Then we walk it. Every pixel with one neighbour is an end, every pixel with three or more is a junction, and every run between them becomes one stroke. One small rule matters a lot here: a diagonal step doesn't count as a junction when a straight neighbour already joins the same two pixels. Without it, every slanted line shatters into hundreds of pieces.</p>
+        <blockquote class="quote"><span class="thin">The program isn't drawing a building.</span> <b>It's solving a route</b> <span class="thin">through a few dozen strokes.</span><cite>From our notebook</cite></blockquote>
+      </section>
+
+      <section class="prose" id="s-pen" aria-labelledby="h-pen">
+        <h2 class="h3" id="h-pen"><span class="thin">06</span> One pen, few lifts</h2>
+        <p>Now we have a pile of strokes and one pen. The order matters: draw them in the wrong order and the pen spends its life flying across the page. We start at the leftmost stroke, always go to the nearest loose end next (either end of a stroke will do), and then improve the route with 2-opt: take any run of strokes, reverse it, and keep the change if the jumps between strokes get shorter.</p>
+        <p>Short jumps are drawn as part of the line, which is what makes it look like one hand. A jump longer than a set share of the drawing lifts the pen instead, because a long straight join reads as a mistake. Last, Douglas–Peucker drops points the eye won't miss and Chaikin corner-cutting rounds what's left, so the pen flows.</p>
+        <aside class="mnote"><b>On the page,</b> each pen run is an SVG path whose dash is as long as the path. Scrolling slides the dash along, so the line draws itself, and a green dot marks the pen.</aside>
+        <div class="stages one">
+          <figure><img src="{{STAGE:my-line}}" alt="Stage 5: the final continuous line." loading="lazy"><figcaption>One line: 34 strokes, 17 pen runs</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="prose" id="s-numbers" aria-labelledby="h-numbers">
+        <h2 class="h3" id="h-numbers"><span class="thin">07</span> What the numbers say</h2>
+        <p>We measure each line in frames: 1.0 means the ink would go once round the drawing's own box. The two skylines sit right at 1.0, because a skyline is just its outline, drawn without lifting the pen once. The busiest drawings are the ones with texture: the laptop's keys, and the seven-landmark row, which is seven drawings sharing one ground line.</p>
+        <figure class="fig chart-fig wide">
+          <figcaption class="chart-title"><b>Ink per drawing.</b> <span>Sorted by line length. The highlighted row is the hero drawing on the landing page. Hover or tab to a row for every number.</span></figcaption>
+          <div class="sc" data-chart="stats" role="group" aria-label="Line length, strokes and pen lifts for each traced drawing"></div>
+          <details class="table-twin"><summary>Show as a table</summary><div data-twin></div></details>
+          <p class="credit">Source: art/art.json, written by tools/trace.py on 8 November 2026. The hourglass is left out: its 624 raw pieces never made a readable drawing.</p>
+        </figure>
+      </section>
+
+      <section class="prose" id="s-check" aria-labelledby="h-check">
+        <h2 class="h3" id="h-check"><span class="thin">08</span> Self-check</h2>
+        <p>Four questions on what you just read. Answer, then read why each option is right or wrong.</p>
+        <div class="wide"><div class="quizbox" data-quiz="blog" aria-labelledby="h-check"><div class="quiz-top"><div class="chips" role="group" aria-label="Filter questions by topic"></div><div class="score"><span>Score</span><b data-score>0 / 4</b><span class="bar" aria-hidden="true"><i data-bar></i></span><button class="btn line small" type="button" data-reset><svg class="ico" aria-hidden="true"><use href="#i-arrow-path"/></svg>Start again</button></div></div><div class="quiz" aria-live="polite"></div><script type="application/json">[{"topic": "Tracing", "q": "What does Zhang–Suen thinning do to the edges?", "a": 0, "o": [["Peels them down to a one-pixel centre line", "It removes pixels from both sides until only the centre is left, without breaking connections."], ["Finds where brightness changes", "That is the Canny detector, one step earlier."], ["Joins the strokes into one path", "That is the chaining step, after the walk."], ["Fills the silhouette with colour", "The colour blocks come from the silhouette mask, not from thinning."]]}, {"topic": "Tracing", "q": "Why does the pen lift on a long jump?", "a": 2, "o": [["To save file size", "A lift costs about the same as a short line."], ["Because SVG can't draw long lines", "SVG draws any length."], ["A long straight join reads as a mistake", "Short joins look like one hand; long ones look like an error, so the pen lifts."], ["To make it draw faster", "Speed comes from scroll, not from lifts."]]}, {"topic": "Numbers", "q": "A drawing measures 1.0 frames. What does that mean?", "a": 1, "o": [["It fills its frame with ink", "Frames measure length, not area."], ["Its line would go once round its own box", "That's the unit: line length over the drawing's perimeter. Skylines sit near 1.0."], ["It was drawn in one second", "Timing comes from scroll, not from length."], ["It has exactly one stroke", "The skylines have 7 to 22 strokes and still sit near 1.0."]]}, {"topic": "Numbers", "q": "Why does the laptop measure busier than a skyline?", "a": 3, "o": [["It is a bigger photo", "Every drawing is normalised to the same width."], ["Laptops are harder to segment", "Its outline was clean; the inside wasn't."], ["It has more pen lifts", "It has 4 lifts; the busiest row has 25."], ["Its keyboard is all short edges", "1,697 raw pieces from the keys, cut to 132 strokes, still add up to 3.4 frames."]]}]</script></div></div>
+      </section>
+
+      <section class="prose" id="s-terms" aria-labelledby="h-terms">
+        <h2 class="h3" id="h-terms"><span class="thin">09</span> Key terms</h2>
+        <p>The words from this article, and the airport words you'll see on signs at the Gulf hubs, with the Arabic beside them.</p>
+        <div class="wide">
+        <label class="search-box"><span class="sr">Filter terms</span><svg class="ico" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><input class="input" type="search" placeholder="Filter, e.g. gate, skeleton, visa" autocomplete="off" data-search="#blog-terms" data-count="bt-count" data-empty="bt-empty" data-noun="terms"><kbd aria-hidden="true">/</kbd></label>
+        <p class="search-meta"><span class="meta" id="bt-count" aria-live="polite"></span><span class="hint">Press / to jump here, Esc to clear. Arabic face: <a href="heavy-light-system.html#type">pick one</a>.</span></p>
+        <dl class="terms" id="blog-terms">
+          <div><dt>Skeleton</dt><dd>A drawing thinned until every line is one pixel wide, down its centre.</dd></div>
+          <div><dt>Canny edges</dt><dd>A detector that marks pixels where brightness changes sharply; we keep only the long runs.</dd></div>
+          <div><dt>GrabCut</dt><dd>An OpenCV method that splits a picture into subject and background from a rough box.</dd></div>
+          <div><dt>Otsu threshold</dt><dd>A brightness cut-off chosen automatically to split dark from light.</dd></div>
+          <div><dt>Pen lift</dt><dd>A jump too long to draw; the pen leaves the paper instead.</dd></div>
+          <div><dt>Frame</dt><dd>Our unit for line length: once round the drawing's own box.</dd></div>
+          <div><dt>2-opt</dt><dd>A route trick: reverse a run of strokes and keep it if the jumps get shorter.</dd></div>
+          <div><dt>Douglas–Peucker</dt><dd>Drops points from a line that the eye won't miss.</dd></div>
+          <div><dt>Layover <span class="ar" lang="ar">توقف</span></dt><dd>The hours between two flights; long enough to leave the airport.</dd></div>
+          <div><dt>Transit visa <span class="ar" lang="ar">تأشيرة عبور</span></dt><dd>Permission to pass through a country between flights. Whether you need one depends on your passport and route.</dd></div>
+          <div><dt>Left luggage <span class="ar" lang="ar">حفظ الأمتعة</span></dt><dd>A staffed desk or a locker where bags wait for a few hours.</dd></div>
+          <div><dt>Departures <span class="ar" lang="ar">المغادرة</span></dt><dd>The floor and screens for flights leaving.</dd></div>
+          <div><dt>Arrivals <span class="ar" lang="ar">الوصول</span></dt><dd>Where you come out after passport control and bags.</dd></div>
+          <div><dt>Passport control <span class="ar" lang="ar">الجوازات</span></dt><dd>The desks where your passport is checked on the way in and out.</dd></div>
+          <div><dt>Customs <span class="ar" lang="ar">الجمارك</span></dt><dd>The check on what you bring in, after the bags.</dd></div>
+          <div><dt>Gate <span class="ar" lang="ar">بوابة</span></dt><dd>Where the flight boards. It can change; watch the screens.</dd></div>
+          <div><dt>Boarding pass <span class="ar" lang="ar">بطاقة صعود الطائرة</span></dt><dd>The document that lets you through the gate.</dd></div>
+          <div><dt>Duty free <span class="ar" lang="ar">السوق الحرة</span></dt><dd>Shops past security that sell without local tax.</dd></div>
+          <div><dt>Prayer room <span class="ar" lang="ar">مصلى</span></dt><dd>A quiet room for prayer; most hub airports have several.</dd></div>
+          <div><dt>Exit <span class="ar" lang="ar">مخرج</span></dt><dd>The way out. Follow it to trains and taxis.</dd></div>
+        </dl>
+        <p class="empty" id="bt-empty" hidden>No term matches <q></q>. Try fewer letters.</p>
+        </div>
+      </section>
+
+      <section class="prose" id="s-credits" aria-labelledby="h-credits">
+        <h2 class="h3" id="h-credits"><span class="thin">10</span> Credits</h2>
+        <p>Every photograph is from Wikimedia Commons. We cropped, traced and recoloured them; the licences below allow that with credit.</p>
+        <ul class="credits-list">
+{{CREDITS}}
+        </ul>
+      </section>
+    </article>
+  </div>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <section class="wrap more" aria-labelledby="more-h">
+    <h2 class="h2" id="more-h"><span class="thin">More from</span> the journal</h2>
+    <ol class="posts small">
+      <li class="post"><a class="post-link" href="#index"><div class="art-tile" style="--tile: var(--blk-2)"><figure class="art" data-art="magnifier" data-noblocks></figure></div><p class="kicker">Behind the line</p><h3 class="h3"><span class="thin">Why every drawing</span> has a green pen</h3></a></li>
+      <li class="post"><a class="post-link" href="#index"><div class="art-tile" style="--tile: var(--blk-4)"><figure class="art" data-art="dubai" data-noblocks></figure></div><p class="kicker">Cities</p><h3 class="h3"><span class="thin">Dubai after</span> sunset, on foot</h3></a></li>
+      <li class="post"><a class="post-link" href="#index"><div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="riyadh" data-noblocks></figure></div><p class="kicker">Cities</p><h3 class="h3"><span class="thin">Riyadh in</span> twelve hours</h3></a></li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><a class="wordmark" href="#top"><span>The Halfway</span><b>Journal</b></a></div>
+    <div><h3>Stories</h3><ul><li><a href="#index">All stories</a></li><li><a href="#article">Behind the line</a></li></ul></div>
+    <div><h3>Halfway</h3><ul><li><a href="heavy-light-landing.html">The pass</a></li><li><a href="heavy-light-form.html">Get a pass</a></li><li><a href="heavy-light-system.html">Design system</a></li></ul></div>
+    <div>
+      <h3>Theme</h3>
+      <div class="theme" role="group" aria-label="Theme">
+        <button type="button" data-pick="light" aria-label="Light" title="Light"><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg></button>
+        <button type="button" data-pick="dark" aria-label="Dark" title="Dark"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg></button>
+        <button type="button" data-pick="device" aria-label="Device setting" title="Device setting"><svg class="ico" aria-hidden="true"><use href="#i-computer-desktop"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-base"><span>Demo journal for a made-up product. Built with Heavy Light.</span></div>
+</footer>
+<a class="to-top-fab" href="#top" aria-label="Back to top" title="Back to top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>

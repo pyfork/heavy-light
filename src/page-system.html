@@ -1,0 +1,680 @@
+<a class="skip" href="#contents">Skip to contents</a>
+<header class="mast">
+  <div class="wrap mast-in">
+    <a class="wordmark" href="#top"><span>Design system</span><b>Heavy Light</b></a>
+    <button class="icon-btn menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Menu"><svg class="ico" aria-hidden="true"><use href="#i-bars-3"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#colour" data-text="Foundations">Foundations</a>
+      <a href="#components" data-text="Components">Components</a>
+      <a href="#line" data-text="Line art">Line art</a>
+      <a href="#contexts" data-text="Contexts">Contexts</a>
+      <a class="btn small" href="#tokens">Get the tokens<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></a>
+    </nav>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</header>
+
+<main id="top">
+  <section class="wrap sys-hero" aria-labelledby="sys-h">
+    <div class="sys-hero-txt">
+      <p class="kicker">Design system · version 1 · 8 November 2026</p>
+      <h1 class="display" id="sys-h">Heavy <span class="thin">Light</span></h1>
+      <p class="dek">Thin words next to heavy ones. Square grey panels, one green for action, orange ticks, mint labels and a yellow sticker for good news. Pictures are a single line, traced from real photographs, that draw themselves as you read.</p>
+      <div class="btn-row">
+        <a class="btn" href="#contexts">See it in use<svg class="ico go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn line" href="#tokens">Copy the tokens</a>
+      </div>
+    </div>
+    <dl class="stats sys-facts">
+      <div><dt class="sr">Colour tokens</dt><dd><b>27</b><span>colour tokens, each set once for light and dark</span></dd></div>
+      <div><dt class="sr">Weights</dt><dd><b>6</b><span>weights, from 200 to 900, on one system font</span></dd></div>
+      <div><dt class="sr">Corner radius</dt><dd><b>0<small>px</small></b><span>corner radius; circles only where a circle means something</span></dd></div>
+      <div><dt class="sr">Drawings</dt><dd><b>16</b><span>single-line drawings, traced from photos with OpenCV</span></dd></div>
+    </dl>
+  </section>
+
+  <figure class="wrap sys-band" aria-label="A single continuous line drawing of the Dubai skyline at sunset, over flat blocks of colour.">
+    <div class="art hero-draw" data-art="dubai" data-dur="4200" style="--b1: var(--blk-2)"></div>
+    <figcaption class="credit">Dubai skyline, traced from a photo by Francisco Anzola, CC BY 3.0.</figcaption>
+  </figure>
+
+  <div class="wrap article-grid" id="contents" data-progress>
+    <nav class="rail" data-toc aria-label="Contents">
+      <span class="label">Contents</span>
+      <ol class="toc"><span class="spine" aria-hidden="true"></span>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#colour">Colour</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#shape">Space and shape</a></li>
+        <li><a href="#motion">Motion</a></li>
+        <li><a href="#icons">Icons</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#line">Line art</a></li>
+        <li><a href="#data">Data and diagrams</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#copy">Click to copy</a></li>
+        <li><a href="#mobile">Mobile</a></li>
+        <li><a href="#dark">Dark</a></li>
+        <li><a href="#contexts">Contexts</a></li>
+        <li><a href="#tokens">Tokens</a></li>
+      </ol>
+    </nav>
+
+    <div class="ds">
+
+      <!-- 01 -->
+      <section class="ds-sec" id="principles" aria-labelledby="h-principles">
+        <header class="ds-head"><p class="kicker">01</p><h2 class="h2" id="h-principles"><span class="thin">Five</span> principles</h2></header>
+        <ol class="principles">
+          <li><h3 class="h3"><span class="thin">Weight</span> carries the hierarchy</h3><p>One system font, six weights. Every line that matters puts a 200 next to a 900: "<span class="thin">Seven cities.</span> <b class="heavy">One pass</b>". Size changes less than you'd think; weight does the shouting.</p></li>
+          <li><h3 class="h3"><span class="thin">Square,</span> flat, quiet</h3><p>No rounded corners, no gradients, one soft shadow, kept for the main button. Light grey panels on white hold the content. The page should feel like a well-printed leaflet.</p></li>
+          <li><h3 class="h3"><span class="thin">Each colour</span> has one job</h3><p>Green acts. Orange confirms (the tick). Mint labels. Yellow celebrates. Red, amber and green status colours never stand alone: an icon and a word always come with them.</p></li>
+          <li><h3 class="h3"><span class="thin">One line</span> per picture</h3><p>Illustrations are a single continuous stroke over blocks of flat colour, set slightly off register. They are traced from real photographs, so every tower leans the way the real one does.</p></li>
+          <li><h3 class="h3"><span class="thin">Motion</span> follows the reader</h3><p>Lines draw as you scroll, at your speed, and a companion line walks down the margin with you. Nothing moves on its own except the first drawing. Reduced motion shows everything finished.</p></li>
+        </ol>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 02 -->
+      <section class="ds-sec" id="colour" aria-labelledby="h-colour">
+        <header class="ds-head"><p class="kicker">02 · Foundations</p><h2 class="h2" id="h-colour"><span class="thin">Colour,</span> by job</h2>
+          <p class="dek">Every colour is a token set once with <code>light-dark()</code>, so the theme switch (bottom of the page) flips all of them together. Chips below show the live value; the hex pair is light / dark.</p></header>
+
+        <h3 class="label sw-group">Surfaces</h3>
+        <ul class="swatches">
+          <li><span class="chip" style="background:var(--paper)"></span><button type="button" class="copy-chip" data-copy-text="var(--paper)" title="Copy var(--paper)">--paper<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Page</b><small>#ffffff / #101511</small></li>
+          <li><span class="chip" style="background:var(--panel)"></span><button type="button" class="copy-chip" data-copy-text="var(--panel)" title="Copy var(--panel)">--panel<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Panels, cards</b><small>#f6f6f6 / #1a211c</small></li>
+          <li><span class="chip" style="background:var(--panel-2)"></span><button type="button" class="copy-chip" data-copy-text="var(--panel-2)" title="Copy var(--panel-2)">--panel-2<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Second tier</b><small>#ebebeb / #222a24</small></li>
+          <li><span class="chip" style="background:var(--field)"></span><button type="button" class="copy-chip" data-copy-text="var(--field)" title="Copy var(--field)">--field<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Inputs</b><small>#ffffff / #121813</small></li>
+          <li><span class="chip" style="background:var(--deep)"></span><button type="button" class="copy-chip" data-copy-text="var(--deep)" title="Copy var(--deep)">--deep<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Footer</b><small>#323237 / #0a0d0b</small></li>
+        </ul>
+        <h3 class="label sw-group">Ink and edges</h3>
+        <ul class="swatches">
+          <li><span class="chip" style="background:var(--ink)"></span><button type="button" class="copy-chip" data-copy-text="var(--ink)" title="Copy var(--ink)">--ink<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Text, the line</b><small>#222222 / #eeeeee</small></li>
+          <li><span class="chip" style="background:var(--ink-2)"></span><button type="button" class="copy-chip" data-copy-text="var(--ink-2)" title="Copy var(--ink-2)">--ink-2<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Second text</b><small>#555555 / #b0b0b0</small></li>
+          <li><span class="chip" style="background:var(--muted)"></span><button type="button" class="copy-chip" data-copy-text="var(--muted)" title="Copy var(--muted)">--muted<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Hints, meta</b><small>#6b6b6b / #8f978f</small></li>
+          <li><span class="chip" style="background:var(--edge)"></span><button type="button" class="copy-chip" data-copy-text="var(--edge)" title="Copy var(--edge)">--edge<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Hairlines</b><small>#d6d6d6 / #3a443d</small></li>
+          <li><span class="chip" style="background:var(--edge-hi)"></span><button type="button" class="copy-chip" data-copy-text="var(--edge-hi)" title="Copy var(--edge-hi)">--edge-hi<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Control edges</b><small>#888888 / #7a857d</small></li>
+        </ul>
+        <h3 class="label sw-group">Brand</h3>
+        <ul class="swatches">
+          <li><span class="chip" style="background:var(--act)"></span><button type="button" class="copy-chip" data-copy-text="var(--act)" title="Copy var(--act)">--act<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Acts: buttons</b><small>#2f7d58 / #5cbf8f</small></li>
+          <li><span class="chip" style="background:var(--link)"></span><button type="button" class="copy-chip" data-copy-text="var(--link)" title="Copy var(--link)">--link<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Links, focus</b><small>#2c622c / #6cc196</small></li>
+          <li><span class="chip" style="background:var(--tick)"></span><button type="button" class="copy-chip" data-copy-text="var(--tick)" title="Copy var(--tick)">--tick<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Confirms: ticks</b><small>#d9681f / #f0a060</small></li>
+          <li><span class="chip" style="background:var(--mint)"></span><button type="button" class="copy-chip" data-copy-text="var(--mint)" title="Copy var(--mint)">--mint<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Labels: tags</b><small>#d4e4dc / #23382c</small></li>
+          <li><span class="chip" style="background:var(--cheer)"></span><button type="button" class="copy-chip" data-copy-text="var(--cheer)" title="Copy var(--cheer)">--cheer<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Celebrates</b><small>#ffcd2e, both themes</small></li>
+        </ul>
+        <h3 class="label sw-group">Blocks under drawings</h3>
+        <ul class="swatches">
+          <li><span class="chip" style="background:var(--blk-1)"></span><button type="button" class="copy-chip" data-copy-text="var(--blk-1)" title="Copy var(--blk-1)">--blk-1<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Sea glass</b><small>#bfdccb / #2c4a3a</small></li>
+          <li><span class="chip" style="background:var(--blk-2)"></span><button type="button" class="copy-chip" data-copy-text="var(--blk-2)" title="Copy var(--blk-2)">--blk-2<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Coral</b><small>#f3b4ab / #6a3a35</small></li>
+          <li><span class="chip" style="background:var(--blk-3)"></span><button type="button" class="copy-chip" data-copy-text="var(--blk-3)" title="Copy var(--blk-3)">--blk-3<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Ochre</b><small>#f0cf8a / #5e4f26</small></li>
+          <li><span class="chip" style="background:var(--blk-4)"></span><button type="button" class="copy-chip" data-copy-text="var(--blk-4)" title="Copy var(--blk-4)">--blk-4<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Harbour</b><small>#b9d2de / #2b4654</small></li>
+        </ul>
+        <h3 class="label sw-group">Status <span class="thin">(always with an icon and a word)</span></h3>
+        <ul class="swatches">
+          <li><span class="chip" style="background:var(--ok)"></span><button type="button" class="copy-chip" data-copy-text="var(--ok)" title="Copy var(--ok)">--ok<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Done</b><small>#2f7d58 / #6cc196</small></li>
+          <li><span class="chip" style="background:var(--warn)"></span><button type="button" class="copy-chip" data-copy-text="var(--warn)" title="Copy var(--warn)">--warn<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Look at this</b><small>#9a5b00 / #e0a54a</small></li>
+          <li><span class="chip" style="background:var(--bad)"></span><button type="button" class="copy-chip" data-copy-text="var(--bad)" title="Copy var(--bad)">--bad<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button><b>Went wrong</b><small>#c23b32 / #f0857c</small></li>
+        </ul>
+
+        <figure class="fig chart-fig">
+          <figcaption class="chart-title"><b>Every pair we put text or marks on, by contrast.</b> <span>Measured live from the tokens in the current theme; switch the theme and the chart re-measures. Dashed lines are the WCAG 2.2 thresholds.</span></figcaption>
+          <div class="cc" data-chart="contrast" role="group" aria-label="Contrast ratio of each colour pair" data-pairs='[["Ink on paper","--ink","--paper","text"],["Second text on paper","--ink-2","--paper","text"],["Muted on paper","--muted","--paper","text"],["Muted on panel","--muted","--panel","text"],["Link on paper","--link","--paper","text"],["Link on panel","--link","--panel","text"],["Button text on green","--on-act","--act","text"],["Tag text on mint","--on-mint","--mint","text"],["Text on yellow","--on-cheer","--cheer","text"],["Error on paper","--bad","--paper","text"],["Warning on paper","--warn","--paper","text"],["Footer text on deep","--on-deep","--deep","text"],["Tick on field","--tick","--field","graphic"],["Control edge on field","--edge-hi","--field","graphic"],["Line on sea glass","--line","--blk-1","graphic"],["Line on ochre","--line","--blk-3","graphic"]]'></div>
+          <details class="table-twin"><summary>Show as a table</summary><div data-twin></div></details>
+          <p class="credit">Why this green: #2f7d58 gives white text 5.0:1, over the 4.5 body-text line, so the main button passes AA.</p>
+        </figure>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 03 -->
+      <section class="ds-sec" id="type" aria-labelledby="h-type">
+        <header class="ds-head"><p class="kicker">03 · Foundations</p><h2 class="h2" id="h-type"><span class="thin">Type:</span> one font, six weights</h2>
+          <p class="dek">The system font (San Francisco, Segoe, Roboto) downloads nothing and has every weight. Long reads switch to the system book face for body text only.</p></header>
+        <ol class="weights">
+          <li style="font-weight:200"><span class="wt">200</span><span class="wspec">Halfway</span><span class="use">Thin half of a heading, wordmark top line, nav</span></li>
+          <li style="font-weight:300"><span class="wt">300</span><span class="wspec">Halfway</span><span class="use">Choices at rest, hints, meta, captions</span></li>
+          <li style="font-weight:400"><span class="wt">400</span><span class="wspec">Halfway</span><span class="use">Body text, inputs</span></li>
+          <li style="font-weight:700"><span class="wt">700</span><span class="wspec">Halfway</span><span class="use">Tick lists, a chosen option, links in text</span></li>
+          <li style="font-weight:800"><span class="wt">800</span><span class="wspec up">Halfway</span><span class="use">Uppercase field labels, 14px, +0.06em</span></li>
+          <li style="font-weight:900"><span class="wt">900</span><span class="wspec">Halfway</span><span class="use">Headings, buttons, tags, the wordmark</span></li>
+        </ol>
+        <div class="pairing">
+          <p class="pair-do"><span class="tag">Do</span><span class="h2"><span class="thin">Pay for the hours,</span> not the week.</span></p>
+          <p class="pair-dont"><span class="tag line">Don't</span><span class="h2" style="font-weight:600">Pay for the hours, not the week.</span></p>
+          <p class="hint">One flat weight loses the rhythm. Split the line where the meaning turns, light before heavy.</p>
+        </div>
+        <div class="ar-block">
+          <h3 class="label sw-group">Arabic, beside English <span class="thin">(pick a face)</span></h3>
+          <div class="ar-pick" role="group" aria-label="Arabic typeface">
+            <button type="button" data-id="kufi" data-stack='"HL Kufi", "Geeza Pro", "Segoe UI", sans-serif'>Kufi, built in</button>
+            <button type="button" data-id="sans" data-stack='"Geeza Pro", "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif'>Sans</button>
+            <button type="button" data-id="naskh" data-stack='"Damascus", "Noto Naskh Arabic", "Traditional Arabic", "Times New Roman", serif'>Naskh</button>
+          </div>
+          <div class="ar-spec">
+            <div class="pairline"><p class="h2"><span class="thin">Layover</span> pass</p><p class="ar" lang="ar">تذكرة التوقف</p></div>
+            <dl class="ar-terms">
+              <div><dt>Departures</dt><dd class="ar" lang="ar">المغادرة</dd></div>
+              <div><dt>Left luggage</dt><dd class="ar" lang="ar">حفظ الأمتعة</dd></div>
+              <div><dt>Transit visa</dt><dd class="ar" lang="ar">تأشيرة عبور</dd></div>
+              <div><dt>Boarding pass</dt><dd class="ar" lang="ar">بطاقة صعود الطائرة</dd></div>
+            </dl>
+            <p class="hint">Stack in use: <code data-stack-out></code>. Kufi is built into the page (Noto Kufi Arabic, cut to the Arabic alphabet, 24 KB, every weight), so it looks the same on every machine; Sans and Naskh use the machine's own faces. Arabic sits in its own <code>dir="rtl"</code> span at 400, one size up, never uppercase or tracked.</p>
+          </div>
+        </div>
+        <div class="scroll-x" tabindex="0" role="region" aria-label="Type scale, scrolls sideways">
+          <table class="tbl type-scale">
+            <thead><tr><th>Role</th><th>Sample</th><th class="n">Size / line</th><th class="n">Weight</th><th>Class</th></tr></thead>
+            <tbody>
+              <tr><td>Display</td><td><span style="font-size:40px;line-height:40px;font-weight:900;letter-spacing:-.035em">Heavy <span class="thin">Light</span></span></td><td class="n">48–104 / 0.95</td><td class="n">900 + 200</td><td><code>.display</code></td></tr>
+              <tr><td>Heading 1</td><td><span style="font-size:32px;font-weight:900;letter-spacing:-.03em"><span class="thin">Get your</span> pass</span></td><td class="n">40–64 / 1.02</td><td class="n">900 + 200</td><td><code>.h1</code></td></tr>
+              <tr><td>Heading 2</td><td><span style="font-size:26px;font-weight:900;letter-spacing:-.03em"><span class="thin">Three steps,</span> no queues.</span></td><td class="n">44 / 48</td><td class="n">900 + 200</td><td><code>.h2</code></td></tr>
+              <tr><td>Heading 3</td><td><span style="font-size:22px;font-weight:900"><span class="thin">Land and</span> drop your bag</span></td><td class="n">24 / 30</td><td class="n">900 + 200</td><td><code>.h3</code></td></tr>
+              <tr><td>Kicker</td><td><span class="kicker">How it works</span></td><td class="n">13 / 18</td><td class="n">900</td><td><code>.kicker</code></td></tr>
+              <tr><td>Label</td><td><span class="label">Landing date</span></td><td class="n">14 / 20</td><td class="n">800</td><td><code>.label</code></td></tr>
+              <tr><td>Dek</td><td><span class="dek" style="font-size:18px">A city pass for six to seventy-two hours.</span></td><td class="n">20 / 30</td><td class="n">300</td><td><code>.dek</code></td></tr>
+              <tr><td>Body</td><td>One pass covers the train in.</td><td class="n">18 / 28</td><td class="n">400</td><td>default</td></tr>
+              <tr><td>Reading</td><td><span style="font-family:var(--read);font-size:19px">The drawings start as photographs.</span></td><td class="n">20 / 32</td><td class="n">400</td><td><code>.prose p</code></td></tr>
+              <tr><td>Hint</td><td><span class="hint">Leave blank if you're not sure.</span></td><td class="n">15 / 22</td><td class="n">300 italic</td><td><code>.hint</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 04 -->
+      <section class="ds-sec" id="shape" aria-labelledby="h-shape">
+        <header class="ds-head"><p class="kicker">04 · Foundations</p><h2 class="h2" id="h-shape"><span class="thin">Space</span> and shape</h2>
+          <p class="dek">A 4px grid. Big gaps between sections (140px, where the companion line crosses), small gaps inside a panel. Corners are square.</p></header>
+        <ol class="spaces" aria-label="Spacing scale">
+          <li style="--w:4px"><code>--s1</code><i></i><span>4</span></li>
+          <li style="--w:8px"><code>--s2</code><i></i><span>8</span></li>
+          <li style="--w:12px"><code>--s3</code><i></i><span>12</span></li>
+          <li style="--w:16px"><code>--s4</code><i></i><span>16</span></li>
+          <li style="--w:24px"><code>--s5</code><i></i><span>24</span></li>
+          <li style="--w:32px"><code>--s6</code><i></i><span>32</span></li>
+          <li style="--w:40px"><code>--s7</code><i></i><span>40</span></li>
+          <li style="--w:48px"><code>--s8</code><i></i><span>48</span></li>
+          <li style="--w:64px"><code>--s9</code><i></i><span>64</span></li>
+          <li style="--w:96px"><code>--s10</code><i></i><span>96</span></li>
+          <li style="--w:140px"><code>--s11</code><i></i><span>140</span></li>
+        </ol>
+        <div class="shapes">
+          <figure><div class="shape-sq"></div><figcaption><b>0px</b> Panels, buttons, inputs, tags, tiles</figcaption></figure>
+          <figure><div class="shape-ci"></div><figcaption><b>Circle</b> The badge, the swap button, a radio: only where round means something</figcaption></figure>
+          <figure><div class="shape-sh"><span class="btn small" aria-hidden="true">Get a pass</span></div><figcaption><b>One shadow</b> 0 4px 4px at 10%, on the main button only</figcaption></figure>
+          <figure><div class="shape-ed"><span></span><span></span><span></span></div><figcaption><b>Edges</b> 1px at rest, 2px for the target, 3px focus outline</figcaption></figure>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 05 -->
+      <section class="ds-sec" id="motion" aria-labelledby="h-motion">
+        <header class="ds-head"><p class="kicker">05 · Foundations</p><h2 class="h2" id="h-motion"><span class="thin">Motion</span> at the reader's pace</h2></header>
+        <div class="motion-grid">
+          <table class="tbl">
+            <thead><tr><th>Token</th><th class="n">Value</th><th>Used for</th></tr></thead>
+            <tbody>
+              <tr><td><code>--t-fast</code></td><td class="n">150ms</td><td>Hover colour, a tick appearing</td></tr>
+              <tr><td><code>--t-base</code></td><td class="n">300ms</td><td>Switch thumb, arrow nudge, tile fade</td></tr>
+              <tr><td><code>--t-slow</code></td><td class="n">900ms</td><td>Colour blocks sliding into register</td></tr>
+              <tr><td><code>--ease</code></td><td class="n mono">.65 .05 .36 1</td><td>Things that travel (a carousel)</td></tr>
+              <tr><td><code>--ease-out</code></td><td class="n mono">.2 .7 .2 1</td><td>Things that arrive</td></tr>
+              <tr><td>Scroll window</td><td class="n">98% → 36%</td><td>A drawing starts as its top enters the bottom of the screen and finishes by the top third</td></tr>
+              <tr><td>Hero draw</td><td class="n">3.6–5.2s</td><td>The first drawing only; eases out</td></tr>
+            </tbody>
+          </table>
+          <div class="motion-demo">
+            <div class="art-tile" style="--tile: var(--blk-4)"><figure class="art" data-art="sg" data-noblocks></figure></div>
+            <button class="btn line small" type="button" data-replay><svg class="ico" aria-hidden="true"><use href="#i-arrow-path"/></svg>Replay the line</button>
+            <p class="hint">Drawn by your scroll on the way in. Replay runs the 1.4s hover timing, with the pen dot.</p>
+          </div>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 06 -->
+      <section class="ds-sec" id="icons" aria-labelledby="h-icons">
+        <header class="ds-head"><p class="kicker">06 · Foundations</p><h2 class="h2" id="h-icons"><span class="thin">Icons:</span> Heroicons only</h2>
+          <p class="dek">Outline, 24px grid, 1.5 stroke, shown at 20px. Ticks and button arrows go up to 2–3 stroke so they hold their own next to 900 text. Inlined as symbols; no icon font, no emoji.</p></header>
+        <ul class="icons">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>check</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>arrow-right</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-arrow-long-right"/></svg><span>arrow-long-right</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-ticket"/></svg><span>ticket</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-map-pin"/></svg><span>map-pin</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><span>clock</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"/></svg><span>calendar-days</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-device-phone-mobile"/></svg><span>device-phone-mobile</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-lock-closed"/></svg><span>lock-closed</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg><span>chevron-down</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg><span>plus</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg><span>minus</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-arrows-right-left"/></svg><span>arrows-right-left</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-arrow-up-tray"/></svg><span>arrow-up-tray</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg><span>check-circle</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-exclamation-triangle"/></svg><span>exclamation-triangle</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg><span>exclamation-circle</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-information-circle"/></svg><span>information-circle</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-bars-3"/></svg><span>bars-3</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg><span>clipboard-document</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><span>sun</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg><span>moon</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-computer-desktop"/></svg><span>computer-desktop</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-language"/></svg><span>language</span></li>
+        </ul>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 07 -->
+      <section class="ds-sec" id="components" aria-labelledby="h-components">
+        <header class="ds-head"><p class="kicker">07</p><h2 class="h2" id="h-components"><span class="thin">The</span> components</h2>
+          <p class="dek">Each one is plain HTML with a class or two. The full set of field states lives in the <a href="heavy-light-form.html#states">form template</a>.</p></header>
+
+        <div class="spec"><h3 class="label">Buttons</h3>
+          <div class="spec-body btn-row">
+            <a class="btn" href="#components">Get a pass<svg class="ico go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            <a class="btn line" href="#components">See the cities</a>
+            <a class="btn small" href="#components">Small</a>
+            <a class="btn cheer small" href="#components">Yellow</a>
+            <button class="btn" type="button" disabled>Disabled</button>
+            <a class="link-up" href="#components">Text link<svg class="ico" aria-hidden="true"><use href="#i-arrow-long-right"/></svg></a>
+          </div>
+          <p class="spec-note"><b>Main button:</b> green, uppercase 900, square, one soft drop, arrow nudges 4px on hover. <b>Line button:</b> the second choice, never two green buttons side by side.</p>
+        </div>
+
+        <div class="spec"><h3 class="label">Ticks, tags and the badge</h3>
+          <div class="spec-body spec-row">
+            <ul class="ticks"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Free entry to 120 landmarks</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Airport rail included</li></ul>
+            <div class="tag-row"><span class="tag">Left</span><span class="tag">Most chosen</span><span class="tag line">Draft</span><span class="tag cheer">New</span></div>
+            <div class="badge-stage"><p class="badge small-badge"><b>Save 30%</b>on a layover</p></div>
+          </div>
+          <p class="spec-note"><b>Orange ticks</b> confirm: in tick lists, checkboxes and chosen cards. <b>Mint tags</b> name things. <b>The yellow sticker</b> is for one piece of good news per page, tilted 9°, on a photo or a band.</p>
+        </div>
+
+        <div class="spec"><h3 class="label">Form controls</h3>
+          <div class="spec-body controls">
+            <div class="field"><label class="label" for="c-in">Full name</label><input class="input" id="c-in" placeholder="As on your passport"></div>
+            <div class="field"><span class="label" id="c-city-l">Hub city</span><div class="pick" data-placeholder="Choose a city"><button type="button" class="input pick-btn" id="c-city" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="c-city-l c-city"><span class="pick-val">Choose a city</span><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><ul class="pick-list" role="listbox" tabindex="-1" aria-labelledby="c-city-l" hidden><li role="option" data-value="Kuala Lumpur"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Kuala Lumpur</span><small>KUL</small></li><li role="option" data-value="Bangkok"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Bangkok</span><small>BKK</small></li><li role="option" data-value="Singapore"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Singapore</span><small>SIN</small></li><li role="option" data-value="Jakarta"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Jakarta</span><small>CGK</small></li><li role="option" data-value="Riyadh"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Riyadh</span><small>RUH</small></li><li role="option" data-value="Doha"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Doha</span><small>DOH</small></li><li role="option" data-value="Dubai"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Dubai</span><small>DXB</small></li></ul><input type="hidden" name="c-city" value=""></div></div>
+            <div class="field"><span class="label" id="c-date-l">Landing date</span><div class="dp" data-placeholder="Choose a date"><button type="button" class="input dp-btn" id="c-date" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="c-date-l c-date"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"/></svg><span class="dp-val">Choose a date</span></button><div class="dp-pop" role="dialog" aria-label="Choose the landing date" hidden><div class="dp-head"><button type="button" class="icon-btn dp-prev" aria-label="Previous month"><svg class="ico" aria-hidden="true"><use href="#i-chevron-left"/></svg></button><button type="button" class="icon-btn dp-next" aria-label="Next month"><svg class="ico" aria-hidden="true"><use href="#i-chevron-right"/></svg></button></div><div class="dp-months"></div><div class="dp-foot"><button type="button" class="btn line small dp-today">Today</button><button type="button" class="btn small dp-close">Done</button></div></div><input type="hidden" name="c-date" value=""></div></div>
+            <div class="field"><span class="label" id="c-time-l">Landing time</span><div class="pick" data-placeholder="Choose a time" data-times><button type="button" class="input pick-btn" id="c-time" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="c-time-l c-time"><span class="pick-val">Choose a time</span><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><ul class="pick-list" role="listbox" tabindex="-1" aria-labelledby="c-time-l" hidden></ul><input type="hidden" name="c-time" value=""></div></div>
+            <div class="field"><span class="label">Choices</span>
+              <label class="check"><input type="checkbox" checked><span class="box"></span><span class="txt">Horizontal</span></label>
+              <label class="check"><input type="checkbox"><span class="box"></span><span class="txt">Vertical</span></label>
+            </div>
+            <div class="field"><span class="label">Switch</span><label class="switch"><input type="checkbox" checked><span class="track"></span><span class="txt">Text me a plan</span></label></div>
+            <fieldset class="field choices-wide"><legend class="label">Choice cards</legend>
+              <div class="choices"><label class="choice"><input type="radio" name="cc" checked><span class="box"></span><b>48 hours</b><small>$59</small></label><label class="choice"><input type="radio" name="cc"><span class="box"></span><b>72 hours</b><small>$79</small></label></div>
+            </fieldset>
+          </div>
+          <p class="spec-note"><b>No native dropdowns.</b> Choices open a popover list (arrow keys, type to jump, Enter, Esc) with an orange tick on the chosen row. <b>Dates</b> open two months side by side with arrows to step a month; past days are struck through, today has an orange dot. On a phone both become a bottom sheet. <b>Labels</b> sit above, uppercase 800; <b>placeholders</b> are light italic and never replace a label.</p>
+        </div>
+
+        <div class="spec"><h3 class="label">Status messages</h3>
+          <div class="spec-body states-2">
+            <div class="status ok"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg><div><b>Pass held</b><span>We'll keep it for 30 minutes.</span></div></div>
+            <div class="status bad"><svg class="ico" aria-hidden="true"><use href="#i-exclamation-circle"/></svg><div><b>Check 2 fields</b><span>Email and landing date.</span></div></div>
+          </div>
+        </div>
+
+        <div class="spec"><h3 class="label">Image pair</h3>
+          <div class="spec-body">
+            <div class="pair mini-pair">
+              <div><span class="tag">Left</span><img src="{{IMG:th}}" alt="Wat Arun, Bangkok, photo." loading="lazy"></div>
+              <div><span class="tag">Right</span><div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="th"></figure></div></div>
+            </div>
+          </div>
+          <p class="spec-note"><b>LEFT and RIGHT</b> stay those words in both layouts. The pair is how the system shows a photo and its drawing, a before and an after.</p>
+        </div>
+
+        <div class="spec"><h3 class="label">Numbers and quotes</h3>
+          <div class="spec-body">
+            <div class="stats"><div><b>120</b><span>landmarks</span></div><div><b>7</b><span>hub cities</span></div><div><b>72<small>h</small></b><span>longest pass</span></div></div>
+            <blockquote class="quote"><span class="thin">Short jumps are drawn,</span> <b>long ones lift the pen.</b><cite>Tracing rule</cite></blockquote>
+          </div>
+        </div>
+
+        <div class="spec"><h3 class="label">Search</h3>
+          <div class="spec-body">
+            <label class="search-box"><span class="sr">Filter terms</span><svg class="ico" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><input class="input" type="search" placeholder="Filter, e.g. visa, locker, gate" autocomplete="off" data-search="#mini-terms" data-count="mini-count" data-empty="mini-empty" data-noun="terms"><kbd aria-hidden="true">/</kbd></label>
+            <p class="search-meta"><span class="meta" id="mini-count" aria-live="polite"></span><span class="hint">Press / to jump here, Esc to clear.</span></p>
+            <dl class="terms" id="mini-terms">
+              <div><dt>Transit visa <span class="ar" lang="ar">تأشيرة عبور</span></dt><dd>Permission to pass through a country between flights. Whether you need one depends on your passport and route.</dd></div>
+              <div><dt>Left luggage <span class="ar" lang="ar">حفظ الأمتعة</span></dt><dd>A staffed desk or locker where you leave bags for a few hours.</dd></div>
+              <div><dt>Boarding pass <span class="ar" lang="ar">بطاقة صعود الطائرة</span></dt><dd>The document that lets you through the gate; keep it on your phone.</dd></div>
+              <div><dt>Gate <span class="ar" lang="ar">بوابة</span></dt><dd>Where the flight boards. It can change; check the screens.</dd></div>
+              <div><dt>Locker <span class="ar" lang="ar">خزانة</span></dt><dd>A coded box at the station; the pass sends the code.</dd></div>
+              <div><dt>Departures <span class="ar" lang="ar">المغادرة</span></dt><dd>The airport floor and screens for flights leaving.</dd></div>
+            </dl>
+            <p class="empty" id="mini-empty" hidden>No term matches <q></q>. Try fewer letters.</p>
+          </div>
+          <p class="spec-note"><b>Filter as you type,</b> mark the match in ochre, say how many are left, and say so plainly when nothing matches. Arabic is searchable too.</p>
+        </div>
+
+        <div class="spec"><h3 class="label" id="sys-quiz-h">Quiz</h3>
+          <div class="spec-body"><div class="quizbox" data-quiz="system" aria-labelledby="sys-quiz-h"><div class="quiz-top"><div class="chips" role="group" aria-label="Filter questions by topic"></div><div class="score"><span>Score</span><b data-score>0 / 4</b><span class="bar" aria-hidden="true"><i data-bar></i></span><button class="btn line small" type="button" data-reset><svg class="ico" aria-hidden="true"><use href="#i-arrow-path"/></svg>Start again</button></div></div><div class="quiz" aria-live="polite"></div><script type="application/json">[{"topic": "Colour", "q": "A reader ticks a checkbox. What colour is the tick?", "a": 1, "o": [["Green", "Green acts: buttons and links. It never confirms."], ["Orange", "Orange confirms: ticks in lists, checkboxes and chosen cards."], ["Mint", "Mint labels things: tags like LEFT and RIGHT."], ["Yellow", "Yellow celebrates: one sticker of good news per page."]]}, {"topic": "Type", "q": "A heading needs more emphasis. What do you change first?", "a": 2, "o": [["Make it bigger", "Size changes less than you'd think in this system."], ["Colour it green", "Green is for action, not emphasis."], ["Split it: thin, then heavy", "Weight carries the hierarchy: a 200 next to a 900."], ["Underline it", "Underlines mean links."]]}, {"topic": "Line art", "q": "Where does the companion line cross the page?", "a": 0, "o": [["In the empty spacer between sections", "It loops once in the 140px gap, so it never crosses text."], ["Through the middle of each section", "That would run over text and pictures."], ["Only along the bottom", "It runs down the margins, then crosses in the gaps."], ["Nowhere: it stays on the left", "It switches sides at each data-guide block."]]}, {"topic": "Colour", "q": "Can red alone tell the reader a payment failed?", "a": 3, "o": [["Yes, red means error", "Colour alone fails readers who can't see it."], ["Yes, if it's bold", "Bold red is still colour alone."], ["Only in dark mode", "The rule is the same in both themes."], ["No: icon, word and colour together", "Status always ships with an icon and a plain sentence."]]}]</script></div></div>
+          <p class="spec-note"><b>Answer first, then read why</b> each option is right or wrong. Right is a solid green edge with a tick; wrong is a dashed red edge with a cross, so it never relies on colour. Answers and the score are kept in this browser.</p>
+        </div>
+
+        <div class="spec"><h3 class="label">Pick list <span class="thin">(after Your first ninety days)</span></h3>
+          <div class="spec-body"><div class="picklist" data-picklist="system"><div class="pl-cols"><fieldset class="pl-col"><legend><small>Step 1</small><b>Set up</b></legend><label class="check"><input type="checkbox" data-k="0-0"><span class="box"></span><span class="txt">Paste the :root tokens</span></label><label class="check"><input type="checkbox" data-k="0-1"><span class="box"></span><span class="txt">Load hl.css and hl.js</span></label><label class="check"><input type="checkbox" data-k="0-2"><span class="box"></span><span class="txt">Write the wordmark: 200 + 900</span></label><label class="check"><input type="checkbox" data-k="0-3"><span class="box"></span><span class="txt">Pick one block colour per section</span></label></fieldset><fieldset class="pl-col"><legend><small>Step 2</small><b>Build</b></legend><label class="check"><input type="checkbox" data-k="1-0"><span class="box"></span><span class="txt">Split every heading thin, then heavy</span></label><label class="check"><input type="checkbox" data-k="1-1"><span class="box"></span><span class="txt">One green button per view</span></label><label class="check"><input type="checkbox" data-k="1-2"><span class="box"></span><span class="txt">Trace one photo per section, credit it</span></label><label class="check"><input type="checkbox" data-k="1-3"><span class="box"></span><span class="txt">Mark blocks data-guide left or right</span></label></fieldset><fieldset class="pl-col"><legend><small>Step 3</small><b>Check</b></legend><label class="check"><input type="checkbox" data-k="2-0"><span class="box"></span><span class="txt">1280 and 375: no sideways scroll</span></label><label class="check"><input type="checkbox" data-k="2-1"><span class="box"></span><span class="txt">Light and dark both read</span></label><label class="check"><input type="checkbox" data-k="2-2"><span class="box"></span><span class="txt">Contrast chart: all pass</span></label><label class="check"><input type="checkbox" data-k="2-3"><span class="box"></span><span class="txt">Reduced motion shows finished lines</span></label></fieldset></div><div class="pl-prog"><span class="pl-bar" aria-hidden="true"><i data-bar></i></span><span data-count aria-live="polite"></span><button class="btn line small" type="button" data-reset><svg class="ico" aria-hidden="true"><use href="#i-arrow-path"/></svg>Clear</button></div><p class="hint">Ticks are kept in this browser only.</p></div></div>
+          <p class="spec-note"><b>Columns are phases,</b> rows are tasks. A ticked task is struck through in light text; a finished column says "done"; the bar counts the lot.</p>
+        </div>
+
+        <div class="spec"><h3 class="label">Back to top <span class="thin">(two options, pick one per page)</span></h3>
+          <div class="spec-body tt-pair">
+            <div><p class="meta"><b>A · A link at the end of every section.</b> For reference pages with a contents list at the top, like this one: see the end of this section.</p>
+              <div class="tt-frame"><p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p></div></div>
+            <div><p class="meta"><b>B · An arrow in the bottom right corner.</b> It shows once the reader is one screen down. For long pages read straight through: the landing page and the journal use it.</p>
+              <div class="tt-frame"><a class="to-top-fab on" href="#top" aria-label="Back to top" title="Back to top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></div></div>
+          </div>
+          <p class="spec-note"><b>Both are plain links to #top,</b> so they work without the script, and scroll smoothly unless the reader asked for less motion. <b>The arrow is square, ink on paper,</b> 48px, no drop shadow, and green on hover. On phones it hides while a note is showing, so the two never stack.</p></div>
+        <div class="spec"><h3 class="label">Wordmarks</h3>
+          <div class="spec-body marks">
+            <span class="wordmark"><span>Design system</span><b>Heavy Light</b></span>
+            <span class="wordmark"><span>The layover</span><b>Halfway</b><span>city pass</span></span>
+            <span class="wordmark"><span>The Halfway</span><b>Journal</b></span>
+          </div>
+          <p class="spec-note">Uppercase, the name in 900 and the words around it in 200. Two or three stacked lines; never a logo picture.</p>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 08 -->
+      <section class="ds-sec" id="line" aria-labelledby="h-line">
+        <header class="ds-head"><p class="kicker">08</p><h2 class="h2" id="h-line"><span class="thin">Line art:</span> two ways to draw</h2>
+          <p class="dek">Both start from a photograph traced with OpenCV (edge detection, Zhang–Suen skeletonisation, a shortest-route walk). Use the stroke for one subject; use the horizon for a set of places.</p></header>
+        <div class="art-options">
+          <div class="art-option">
+            <p class="label">Option A</p>
+            <h3 class="h3"><span class="thin">One stroke,</span> flat colour</h3>
+            <div class="stage"><figure class="art" data-art="sa" style="--b1: var(--blk-3)"></figure></div>
+            <p class="spec-note">One continuous line over a block set 14 / 10px off register. Draws itself as you scroll. For a single building, object or city.</p>
+          </div>
+          <div class="art-option">
+            <p class="label">Option B</p>
+            <h3 class="h3"><span class="thin">Skyline</span> horizon</h3>
+            <div class="stage"><div class="horizon" data-skylines="riyadh,abudhabi,dubai" data-labels='{"riyadh":"RIYADH","abudhabi":"ABU DHABI","dubai":"DUBAI"}'></div></div>
+            <p class="spec-note">Solid ink skylines on one ground line, city names reversed out in white. Rises from the ground as you scroll. For a row of places.</p>
+          </div>
+        </div>
+        <h3 class="label sw-group">Option A in detail</h3>
+        <figure class="anatomy">
+          <div class="anatomy-art"><figure class="art" data-art="sa" style="--b1: var(--blk-3)"></figure></div>
+          <ol class="anatomy-notes">
+            <li><b>The line</b> <code>--line</code>, 2.1px, round caps and joins, never scales with the drawing.</li>
+            <li><b>The block</b> one of <code>--blk-1…4</code>, the subject's silhouette, set 14 / 10px off register.</li>
+            <li><b>The pen</b> a 5px <code>--act</code> dot rides the tip while the line draws, then hides.</li>
+            <li><b>The timing</b> tied to scroll: the dash slides as the drawing crosses the screen.</li>
+          </ol>
+        </figure>
+
+        <h3 class="label sw-group">Option B in detail: pins on the horizon</h3>
+        <figure class="fig horizon-fig">
+          <div class="horizon" data-skylines="riyadh,abudhabi,dubai" data-labels='{"riyadh":"RIYADH","abudhabi":"ABU DHABI","dubai":"DUBAI"}' data-pins='[{"x":0.21,"t":"King Khalid International","s":"Riyadh","c":"RUH"},{"x":0.47,"t":"Zayed International","s":"Abu Dhabi","c":"AUH"},{"x":0.83,"t":"Dubai International","s":"Dubai","c":"DXB"}]'></div>
+          <figcaption><span><b>Pins</b> are a green square on a dashed stem; the label is 900 with a 300 line under it, flipped to the left near the right edge. Two heights alternate so labels never collide; on a phone only the airport code shows. Pins fade in once the city has risen.</span><span class="credit">Skylines traced from photos by B.alotaby (CC BY-SA 4.0), giggel (CC BY 3.0) and Francisco Anzola (CC BY 3.0).</span></figcaption>
+        </figure>
+
+        <h3 class="label sw-group">Every drawing in the system</h3>
+        <ul class="gallery">
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="qa"></figure></div><b>Doha</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="my" style="--b1: var(--blk-1)"></figure></div><b>Kuala Lumpur</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="id" style="--b1: var(--blk-2)"></figure></div><b>Jakarta</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="sg" style="--b1: var(--blk-4)"></figure></div><b>Singapore</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="th"></figure></div><b>Bangkok</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="sa" style="--b1: var(--blk-2)"></figure></div><b>Riyadh</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="ae" style="--b1: var(--blk-4)"></figure></div><b>Dubai</b><span>landmark</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="suitcase" style="--b1: var(--blk-2)"></figure></div><b>Suitcase</b><span>object</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="phone" style="--b1: var(--blk-1)"></figure></div><b>Telephone</b><span>object</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="magnifier" style="--b1: var(--blk-4)"></figure></div><b>Magnifier</b><span>object</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="laptop"></figure></div><b>Laptop</b><span>object</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="padlock" style="--b1: var(--blk-1)"></figure></div><b>Padlock</b><span>object</span></li>
+          <li><div class="art-tile" style="--tile: var(--panel)"><figure class="art" data-art="handshake" style="--b1: var(--blk-2)"></figure></div><b>Handshake</b><span>object</span></li>
+          <li class="g-wide"><div class="art-tile wide-tile" style="--tile: var(--panel)"><figure class="art" data-art="riyadh" style="--b1: var(--blk-1)"></figure></div><b>Riyadh skyline</b><span>skyline</span></li>
+          <li class="g-wide"><div class="art-tile wide-tile" style="--tile: var(--panel)"><figure class="art" data-art="parade" style="--b2: var(--blk-1); --b3: var(--blk-2)"></figure></div><b>All seven hubs</b><span>composite: seven landmarks on one ground line</span></li>
+        </ul>
+        <p class="fine">Plus the Dubai skyline at the top of this page. We also traced an hourglass and dropped it: too busy to read.</p>
+
+        <div class="rules">
+          <div><h3 class="h3"><span class="thin">The</span> companion line</h3>
+            <p>Mark page blocks with <code>data-guide="left"</code> or <code>"right"</code>. One stroke runs down that side's margin with a slow hand wobble, loops once as it crosses the 140px gap to the other side, and draws up to 72% of the way down the screen, with a green pen dot at its tip. See it on the <a href="heavy-light-landing.html">landing page</a>. On a TOC page the rail's spine plays the same part.</p></div>
+          <div><h3 class="h3"><span class="thin">Use it</span> well</h3>
+            <ul class="ticks small">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>One drawing per section, never two competing.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Trace real things; credit the photo.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Blocks behind, line on top, ink colour only.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Give every drawing an empty margin to breathe.</li>
+            </ul></div>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 09 -->
+      <section class="ds-sec" id="data" aria-labelledby="h-data">
+        <header class="ds-head"><p class="kicker">09</p><h2 class="h2" id="h-data"><span class="thin">Data</span> and diagrams</h2>
+          <p class="dek">Charts are drawn like the rest: ink marks, hairline axes, the green kept for the one row that matters. Diagrams follow the diagram-design rules, skinned with these tokens.</p></header>
+        <div class="rules">
+          <div><h3 class="h3"><span class="thin">Charts</span></h3>
+            <ul class="ticks small">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>One measure per chart; side-by-side columns instead of two axes.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Marks in ink, one highlight in green; labels in text tokens, never the mark colour.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Label the extremes and the highlight; the tooltip and the table carry the rest.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Every chart has a "Show as a table" twin.</li>
+            </ul></div>
+          <div><h3 class="h3"><span class="thin">Diagrams</span></h3>
+            <ul class="ticks small">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Square elbows at 8px radius, no diagonals.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Labels on a paper mask, 6–10px off the line.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Mint fill and green edge on one node: the idea.</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Legend as a strip along the bottom.</li>
+            </ul></div>
+        </div>
+        <figure class="diagram">
+          <div class="scroll-x" tabindex="0" role="region" aria-label="Tracing pipeline diagram, scrolls sideways">{{DIAGRAM:pipeline}}</div>
+          <figcaption class="fine">The tracing pipeline as a flowchart. The full story, with the real numbers, is in the <a href="heavy-light-blog.html#article">journal article</a>.</figcaption>
+        </figure>
+        <figure class="diagram lane-fig">
+          <p class="chart-title"><b>A disciplinary case, from first report to outcome.</b> <span>Swimlane: one lane per person, each step in its owner's lane, handoffs crossing lanes.</span></p>
+          <div class="scroll-x" tabindex="0" role="region" aria-label="Swimlane diagram, scrolls sideways">{{DIAGRAM:swimlane}}</div>
+          <figcaption class="fine">Swipe sideways on a phone. A generic process for the pattern, not legal advice for any country.</figcaption>
+        </figure>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 10 -->
+      <section class="ds-sec" id="tables" aria-labelledby="h-tables">
+        <header class="ds-head"><p class="kicker">10</p><h2 class="h2" id="h-tables"><span class="thin">Tables</span> that sort, filter and fold</h2>
+          <p class="dek">Hairlines, not boxes. Numbers right-aligned in tabular figures. A sticky header with sort buttons, a filter above, and on a phone each row folds into a labelled card.</p></header>
+        <label class="search-box"><span class="sr">Filter drawings</span><svg class="ico" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><input class="input" type="search" placeholder="Filter, e.g. landmark, Riyadh" autocomplete="off" data-search="#drawings-body" data-count="dr-count" data-empty="dr-empty" data-noun="drawings"><kbd aria-hidden="true">/</kbd></label>
+        <p class="search-meta"><span class="meta" id="dr-count" aria-live="polite"></span><span class="meta" data-sort-status aria-live="polite"></span></p>
+        <div class="tbl-wrap">
+          <table class="tbl data" data-sort>
+            <caption class="sr">Every traced drawing, with its tracing numbers. Column headers sort.</caption>
+            <thead><tr>
+              <th scope="col" aria-sort="none"><button type="button">Drawing<svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg></button></th>
+              <th scope="col" aria-sort="none"><button type="button">Kind<svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg></button></th>
+              <th scope="col" class="n" aria-sort="none"><button type="button">Raw pieces<svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg></button></th>
+              <th scope="col" class="n" aria-sort="none"><button type="button">Strokes kept<svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg></button></th>
+              <th scope="col" class="n" aria-sort="none"><button type="button">Pen lifts<svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg></button></th>
+              <th scope="col" class="n" aria-sort="descending"><button type="button">Frames<svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg></button></th>
+            </tr></thead>
+            <tbody id="drawings-body">{{DRAWINGS_TABLE}}</tbody>
+          </table>
+        </div>
+        <p class="empty" id="dr-empty" hidden>No drawing matches <q></q>.</p>
+        <p class="credit">Real numbers from art/art.json. Frames: line length divided by the drawing's own perimeter.</p>
+        <div class="rules">
+          <div><h3 class="h3"><span class="thin">Read</span> fast</h3><ul class="ticks small">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Text left, numbers right, units in the header.</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>One 2px rule under the header, hairlines between rows.</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Row hover in panel grey; no zebra stripes.</li></ul></div>
+          <div><h3 class="h3"><span class="thin">Sort</span> and fold</h3><ul class="ticks small">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Header cells hold buttons; the column carries aria-sort.</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>A live line says what the sort is now.</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Under 760px each row is a card, labels from data-label.</li></ul></div>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 11 -->
+      <section class="ds-sec" id="copy" aria-labelledby="h-copy">
+        <header class="ds-head"><p class="kicker">11</p><h2 class="h2" id="h-copy"><span class="thin">Click</span> to copy</h2>
+          <p class="dek">Anything a reader might paste elsewhere copies in one click and says so: "Copied to the clipboard." There are two ways to say it. <b>The note</b> pops up at the bottom and closes itself after 8 seconds, with a bar counting down; press Stay to keep it, hover to pause it. <b>Next to the button</b> puts the same words, with an orange tick, right beside the button that was pressed.</p></header>
+        <div class="copy-demo">
+          <div class="spec"><h3 class="label">Chips</h3><div class="spec-body tag-row">
+            <button type="button" class="copy-chip" data-copy-text="var(--act)">--act<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button>
+            <button type="button" class="copy-chip" data-copy-text="#2f7d58">#2f7d58<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button>
+            <button type="button" class="copy-chip" data-copy-text="cubic-bezier(.65, .05, .36, 1)">--ease<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button>
+            <button type="button" class="copy-chip" data-copy-text='&lt;span class="thin"&gt;Pay for the hours,&lt;/span&gt; not the week.'>thin + heavy heading<svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg></button>
+          </div></div>
+          <div class="spec"><h3 class="label">Field</h3><div class="spec-body"><div class="copy-field"><label class="sr" for="pass-code">Pass code</label><input class="input" id="pass-code" value="HW-48-KUL-2026" readonly><button class="btn" type="button" data-copy="pass-code"><svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg>Copy</button></div></div></div>
+          <div class="spec"><h3 class="label">The note</h3><div class="spec-body btn-row">
+            <button class="btn line" type="button" data-copy-text="Heavy Light"><svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg>Copy and see the note</button>
+            <span class="hint">8s, then it closes. Stay keeps it. X closes now. If the browser blocks the clipboard, the text is selected instead and the note says how to copy it by hand.</span>
+          </div></div>
+          <div class="spec"><h3 class="label">Next to the button</h3><div class="spec-body btn-row">
+            <button class="btn" type="button" data-copy-text="HW-48-KUL-2026"><svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg>Copy pass code</button><span class="ack" role="status"></span>
+          </div>
+          <p class="spec-note"><b>Use it for the one main action</b> on a page, such as copying a letter or a pass code: the reader is already looking at the button. It stays until the next copy. <b>Use the note</b> for chips and small icons, where there is no room beside them. Put an empty <code>&lt;span class="ack" role="status"&gt;</code> straight after the button; the script does the rest.</p></div>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 12 -->
+      <section class="ds-sec" id="mobile" aria-labelledby="h-mobile">
+        <header class="ds-head"><p class="kicker">12</p><h2 class="h2" id="h-mobile"><span class="thin">Mobile:</span> same system, thumb first</h2>
+          <p class="dek">Under 760px the gutter drops to 16px, panels go full width, and anything that floats becomes a bottom sheet you can reach with a thumb. Type never shrinks below 15px; inputs stay at 18px so phones don't zoom.</p></header>
+        <div class="phone-frames">
+          <figure>
+            <div class="phone-frame" aria-hidden="true"><div class="pf-top"><b>Halfway</b><svg class="ico" aria-hidden="true"><use href="#i-bars-3"/></svg></div><div class="pf-body"><span class="label">Hub city</span><span class="input" style="min-height:40px;font-size:13px;padding:8px 12px">Bangkok</span><span class="ph-line"></span><span class="ph-line" style="width:70%"></span></div><div class="pf-bar"></div><div class="pf-scrim"></div><div class="pf-sheet"><ul><li>Kuala Lumpur<small>KUL</small></li><li class="on">Bangkok<small>BKK</small></li><li>Singapore<small>SIN</small></li><li>Jakarta<small>CGK</small></li></ul></div></div>
+            <figcaption class="phone-cap"><b>Popovers become sheets</b>The list rises from the bottom over a dim scrim; rows grow to 52px.</figcaption>
+          </figure>
+          <figure>
+            <div class="phone-frame" aria-hidden="true"><div class="pf-top"><b>Get your pass</b><span>1 of 2</span></div><div class="pf-body"><span class="ph-line"></span><span class="ph-line" style="width:80%"></span><span class="ph-line" style="width:60%"></span><span class="ph-line"></span><span class="ph-line" style="width:75%"></span></div><div class="pf-bar"><span class="btn">Hold my pass</span></div></div>
+            <figcaption class="phone-cap"><b>The action stays in reach</b>The form's main button sticks to the bottom while you scroll.</figcaption>
+          </figure>
+          <figure>
+            <div class="phone-frame" aria-hidden="true"><div class="pf-top"><b>Landing date</b><svg class="ico" aria-hidden="true"><use href="#i-x-mark"/></svg></div><div class="pf-body"><p class="dp-cap" style="font-size:15px;margin:0"><b>November</b> <span class="thin">2026</span></p><div class="dp-grid" style="font-size:12px"><span class="dp-dow" style="height:20px;font-size:9px">Mo</span><span class="dp-dow" style="height:20px;font-size:9px">Tu</span><span class="dp-dow" style="height:20px;font-size:9px">We</span><span class="dp-dow" style="height:20px;font-size:9px">Th</span><span class="dp-dow" style="height:20px;font-size:9px">Fr</span><span class="dp-dow" style="height:20px;font-size:9px">Sa</span><span class="dp-dow" style="height:20px;font-size:9px">Su</span><span></span><span></span><span></span><span></span><span></span><span></span><span style="display:grid;place-items:center;height:28px;">1</span><span style="display:grid;place-items:center;height:28px;">2</span><span style="display:grid;place-items:center;height:28px;">3</span><span style="display:grid;place-items:center;height:28px;">4</span><span style="display:grid;place-items:center;height:28px;">5</span><span style="display:grid;place-items:center;height:28px;">6</span><span style="display:grid;place-items:center;height:28px;">7</span><span style="display:grid;place-items:center;height:28px;">8</span><span style="display:grid;place-items:center;height:28px;">9</span><span style="display:grid;place-items:center;height:28px;">10</span><span style="display:grid;place-items:center;height:28px;">11</span><span style="display:grid;place-items:center;height:28px;">12</span><span style="display:grid;place-items:center;height:28px;">13</span><span style="display:grid;place-items:center;height:28px;background:var(--act);color:var(--on-act);font-weight:900">14</span><span style="display:grid;place-items:center;height:28px;">15</span><span style="display:grid;place-items:center;height:28px;">16</span><span style="display:grid;place-items:center;height:28px;">17</span><span style="display:grid;place-items:center;height:28px;">18</span><span style="display:grid;place-items:center;height:28px;">19</span><span style="display:grid;place-items:center;height:28px;">20</span><span style="display:grid;place-items:center;height:28px;">21</span><span style="display:grid;place-items:center;height:28px;">22</span><span style="display:grid;place-items:center;height:28px;">23</span><span style="display:grid;place-items:center;height:28px;">24</span><span style="display:grid;place-items:center;height:28px;">25</span><span style="display:grid;place-items:center;height:28px;">26</span><span style="display:grid;place-items:center;height:28px;">27</span><span style="display:grid;place-items:center;height:28px;">28</span><span style="display:grid;place-items:center;height:28px;">29</span><span style="display:grid;place-items:center;height:28px;">30</span></div></div><div class="pf-bar"><span class="btn">Done</span></div></div>
+            <figcaption class="phone-cap"><b>One month at a time</b>Two months side by side on a desk, one on a phone, same arrows.</figcaption>
+          </figure>
+        </div>
+        <div class="scroll-x" tabindex="0" role="region" aria-label="Desk and phone table, scrolls sideways">
+          <table class="tbl">
+            <thead><tr><th>Part</th><th>Desk, 761px and up</th><th>Phone, 760px and under</th></tr></thead>
+            <tbody>
+              <tr><td>Navigation</td><td>Links in the masthead</td><td>Menu button, full-width list</td></tr>
+              <tr><td>Popover select</td><td>Panel under the field</td><td>Bottom sheet, scrim, 52px rows</td></tr>
+              <tr><td>Date picker</td><td>Two months, arrows</td><td>One month in a bottom sheet</td></tr>
+              <tr><td>Form actions</td><td>In the flow</td><td>Sticky bar at the bottom</td></tr>
+              <tr><td>Tables</td><td>Sticky header, sort buttons</td><td>Each row a card with labels</td></tr>
+              <tr><td>Contents rail</td><td>Sticky on the left, spine draws</td><td>A panel above the article</td></tr>
+              <tr><td>Margin notes</td><td>In the right margin</td><td>Inline, under the paragraph</td></tr>
+              <tr><td>Companion line</td><td>Centre of each margin</td><td>8px from the screen edge</td></tr>
+              <tr><td>Toast</td><td>Bottom centre</td><td>Full width, actions on a second row</td></tr>
+              <tr><td>Ack next to the button</td><td>Right of the button</td><td>Wraps under the button</td></tr>
+              <tr><td>Back to top arrow</td><td>24px from the bottom right</td><td>16px from the corner; hides while a note shows</td></tr>
+              <tr><td>Touch targets</td><td>40px or more</td><td>44px or more</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 13 -->
+      <section class="ds-sec" id="dark" aria-labelledby="h-dark">
+        <header class="ds-head"><p class="kicker">13</p><h2 class="h2" id="h-dark"><span class="thin">Dark</span> is its own palette</h2>
+          <p class="dek">Not an inverted page: every token has a chosen dark value. The same card below is forced light on the left and dark on the right, whatever theme you're in, because each side sets its own <code>color-scheme</code>.</p></header>
+        <div class="duet">
+          <div class="force-light">
+            <span class="wordmark"><span>The layover</span><b>Halfway</b></span>
+            <div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="padlock" data-noblocks></figure></div>
+            <p class="h3"><span class="thin">Light:</span> ink on paper</p>
+            <ul class="ticks small"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Rail in and out</li></ul>
+            <div class="btn-row"><span class="btn small">Get a pass</span><span class="tag">Left</span><span class="tag cheer">New</span></div>
+          </div>
+          <div class="force-dark">
+            <span class="wordmark"><span>The layover</span><b>Halfway</b></span>
+            <div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="padlock" data-noblocks></figure></div>
+            <p class="h3"><span class="thin">Dark:</span> paper on ink</p>
+            <ul class="ticks small"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Rail in and out</li></ul>
+            <div class="btn-row"><span class="btn small">Get a pass</span><span class="tag">Left</span><span class="tag cheer">New</span></div>
+          </div>
+        </div>
+        <div class="scroll-x" tabindex="0" role="region" aria-label="Dark mode table, scrolls sideways">
+          <table class="tbl">
+            <thead><tr><th>Thing</th><th>In dark</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>Page and panels</td><td>Green-black #101511, panels #1a211c</td><td>A hint of the brand green, never flat #000</td></tr>
+              <tr><td>Ink</td><td>#eeeeee, second text #b0b0b0</td><td>Off-white glares less than pure white</td></tr>
+              <tr><td>Green button</td><td>Lighter #5cbf8f with dark text</td><td>White on a light green fails contrast</td></tr>
+              <tr><td>The line</td><td>Turns light, blocks deepen</td><td>Drawings keep their contrast and weight</td></tr>
+              <tr><td>Yellow and orange</td><td>Yellow stays as it is, with ink on it; orange steps lighter</td><td>They stay the loud ones</td></tr>
+              <tr><td>Photos</td><td>Never inverted</td><td>A photo is a record; process plates do invert</td></tr>
+              <tr><td>Status</td><td>Lightened: #6cc196, #e0a54a, #f0857c</td><td>Each passes 4.5 on the dark page</td></tr>
+              <tr><td>Switch</td><td>Light, dark or device, kept per browser</td><td>Set before first paint, so no flash</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 14 -->
+      <section class="ds-sec" id="contexts" aria-labelledby="h-contexts">
+        <header class="ds-head"><p class="kicker">14</p><h2 class="h2" id="h-contexts"><span class="thin">Three</span> contexts</h2>
+          <p class="dek">Full pages built only from the parts above, for a made-up layover city pass. Open one and copy it.</p></header>
+        <ul class="contexts">
+          <li><a href="heavy-light-landing.html">
+            <div class="art-tile" style="--tile: var(--blk-3)"><figure class="art" data-art="suitcase" data-noblocks></figure></div>
+            <p class="kicker">Landing page</p><h3 class="h3"><span class="thin">Halfway,</span> the layover pass</h3>
+            <p>Split hero with photo and yellow badge, the seven-city drawing, steps, city cards that turn into drawings, prices, Q: / A:, and the companion line weaving down the margins.</p>
+            <span class="link-up">Open<svg class="ico" aria-hidden="true"><use href="#i-arrow-long-right"/></svg></span></a></li>
+          <li><a href="heavy-light-form.html">
+            <div class="art-tile" style="--tile: var(--blk-1)"><figure class="art" data-art="padlock" data-noblocks></figure></div>
+            <p class="kicker">Form</p><h3 class="h3"><span class="thin">Get your</span> pass</h3>
+            <p>Two-step checkout with live summary, choice cards, steppers, a switch, error summary and inline errors, every field state, and an image pair.</p>
+            <span class="link-up">Open<svg class="ico" aria-hidden="true"><use href="#i-arrow-long-right"/></svg></span></a></li>
+          <li><a href="heavy-light-blog.html">
+            <div class="art-tile" style="--tile: var(--blk-2)"><figure class="art" data-art="laptop" data-noblocks></figure></div>
+            <p class="kicker">Blog with index and contents</p><h3 class="h3"><span class="thin">The Halfway</span> journal</h3>
+            <p>Filterable story index, then a long read with a sticky contents rail whose spine draws as you read, margin notes, process figures, a chart and the pipeline diagram.</p>
+            <span class="link-up">Open<svg class="ico" aria-hidden="true"><use href="#i-arrow-long-right"/></svg></span></a></li>
+        </ul>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+
+      <!-- 15 -->
+      <section class="ds-sec" id="tokens" aria-labelledby="h-tokens">
+        <header class="ds-head"><p class="kicker">15</p><h2 class="h2" id="h-tokens"><span class="thin">The</span> tokens</h2>
+          <p class="dek">Paste this <code>:root</code> block first. Everything else in the system reads from it.</p></header>
+        <div class="code">
+          <button class="btn line small" type="button" data-copy="tokens-code"><svg class="ico" aria-hidden="true"><use href="#i-clipboard-document"/></svg><span>Copy</span></button>
+          <pre id="tokens-code" tabindex="0" role="region" aria-label="Design tokens as CSS">{{TOKENS}}</pre>
+        </div>
+        <p class="to-top"><a href="#top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg>Back to top</a></p>
+      </section>
+    </div>
+  </div>
+
+  <figure class="wrap sys-band end-band" aria-label="A single continuous line drawing of the Riyadh skyline.">
+    <div class="art" data-art="riyadh" style="--b1: var(--blk-1)"></div>
+  </figure>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><a class="wordmark" href="#top"><span>Design system</span><b>Heavy Light</b></a></div>
+    <div><h3>Contexts</h3><ul><li><a href="heavy-light-landing.html">Landing page</a></li><li><a href="heavy-light-form.html">Form</a></li><li><a href="heavy-light-blog.html">Blog</a></li></ul></div>
+    <div>
+      <h3>Theme</h3>
+      <div class="theme" role="group" aria-label="Theme">
+        <button type="button" data-pick="light" aria-label="Light" title="Light"><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg></button>
+        <button type="button" data-pick="dark" aria-label="Dark" title="Dark"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg></button>
+        <button type="button" data-pick="device" aria-label="Device setting" title="Device setting"><svg class="ico" aria-hidden="true"><use href="#i-computer-desktop"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-base"><span>Heavy Light v1. System fonts, Heroicons, no network calls. Photos from Wikimedia Commons, credited where shown.</span>
+    <details class="credits"><summary>Photo credits</summary><ul>
+{{CREDITS}}
+    </ul></details></div>
+</footer>

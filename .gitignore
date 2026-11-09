@@ -1,0 +1,10 @@
+docs/
+art/_trace/
+__pycache__/
+.venv/
+.DS_Store
+node_modules/
+test-results/
+playwright-report/
+tests/screens/
+base/
