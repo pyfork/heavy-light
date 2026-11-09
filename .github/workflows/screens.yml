@@ -68,5 +68,5 @@ jobs:
             echo "::notice::The look changed, and $OWNER approved it (looks-ok)."
             exit 0
           fi
-          echo "::error::The look changed. Download screens-diff from this run for before, after and difference. If the change is intended, $OWNER adds the looks-ok label.${who:+ (looks-ok was last added by $who, which doesn't count.)}"
+          echo "::error::The look changed. Download screens-diff from this run for before, after and difference. If the change is intended, $OWNER adds the looks-ok label.${who:+ (looks-ok was last added by $who, which does not count.)}"
           exit 1
