@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a photograph becomes one line</title>
+<style>:root {
+  color-scheme: light dark;
+
+  /* surfaces */
+  --paper: light-dark(#ffffff, #101511);
+  --panel: light-dark(#f6f6f6, #1a211c);
+  --panel-2: light-dark(#ebebeb, #222a24);
+  --field: light-dark(#ffffff, #121813);
+  --deep: light-dark(#323237, #0a0d0b);
+  --on-deep: #f2f2f2;
+  --on-deep-dim: #b9b9be;
+
+  /* ink */
+  --ink: light-dark(#222222, #eeeeee);
+  --ink-2: light-dark(#555555, #b0b0b0);
+  --muted: light-dark(#6b6b6b, #8f978f);
+  --edge: light-dark(#d6d6d6, #3a443d);
+  --edge-hi: light-dark(#888888, #7a857d);
+
+  /* brand: green acts, orange confirms, mint labels, coral celebrates */
+  --act: light-dark(#2f7d58, #5cbf8f);        /* darkened to pass AA under white text */
+  --act-hover: light-dark(#2c622c, #79d0a5);
+  --on-act: light-dark(#ffffff, #0b140e);
+  --link: light-dark(#2c622c, #6cc196);
+  --mint: light-dark(#d4e4dc, #23382c);
+  --on-mint: light-dark(#2c622c, #8fd3b0);
+  --coral: light-dark(#e5675f, #f08a83);
+  --on-coral: light-dark(#ffffff, #101511);
+  --tick: light-dark(#d9681f, #f0a060);
+
+  /* flat colour blocks under line drawings */
+  --blk-1: light-dark(#bfdccb, #2c4a3a);      /* sea glass */
+  --blk-2: light-dark(#f3b4ab, #6a3a35);      /* coral */
+  --blk-3: light-dark(#f0cf8a, #5e4f26);      /* ochre */
+  --blk-4: light-dark(#b9d2de, #2b4654);      /* harbour */
+  --line: light-dark(#222222, #eeeeee);
+
+  /* status: always with an icon and a word, never colour alone */
+  --ok: light-dark(#2f7d58, #6cc196);
+  --warn: light-dark(#9a5b00, #e0a54a);
+  --bad: light-dark(#c23b32, #f0857c);
+  --focus: var(--link);
+
+  /* type: hierarchy comes from weight, light next to heavy on every line */
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --read: "Iowan Old Style", Charter, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --w-thin: 200;  --w-light: 300;  --w-body: 400;  --w-bold: 700;  --w-label: 800;  --w-heavy: 900;
+  --fs-xs: 13px;  --fs-s: 15px;  --fs-m: 18px;  --fs-l: 20px;  --fs-xl: 24px;
+  --fs-2xl: 32px;  --fs-3xl: 44px;  --fs-4xl: clamp(40px, 5.2vw, 64px);  --fs-5xl: clamp(48px, 8vw, 104px);
+
+  /* space: a 4px grid */
+  --s1: 4px;  --s2: 8px;  --s3: 12px;  --s4: 16px;  --s5: 24px;  --s6: 32px;
+  --s7: 40px; --s8: 48px; --s9: 64px; --s10: 96px; --s11: 140px;
+  --wrap: 1200px;
+  --gut: 40px;
+  --read-w: 640px;
+
+  /* edges, depth, motion, line */
+  --r: 0;
+  --r-round: 999px;
+  --drop: 0 4px 4px rgba(0, 0, 0, 0.1);
+  --t-fast: 150ms;  --t-base: 300ms;  --t-slow: 900ms;
+  --ease: cubic-bezier(.65, .05, .36, 1);
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --line-w: 2.1px;
+  --guide-w: 1.6px;
+}
+body{margin:0;padding:32px 16px;background:var(--paper);color:var(--ink);font-family:var(--sans)}
+.wrap{max-width:1060px;margin:0 auto} h1{font-weight:900;letter-spacing:-.02em;margin:0 0 24px} .scroll-x{overflow-x:auto}
+/* diagram skin (diagram-design rules, page tokens) */
+.diagram { margin: 0; }
+.diagram .scroll-x { padding-bottom: 8px; }
+.dg { width: 100%; height: auto; }
+@media (max-width: 760px) { .dg { min-width: var(--dg-w); } }
+.dg text { font-family: var(--sans); }
+.dg .d-mask { fill: var(--paper); }
+.dg .d-box { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+.dg .d-box.focal { fill: var(--mint); stroke: var(--act); stroke-width: 2; }
+.dg .d-name { fill: var(--ink); font-size: 13px; font-weight: var(--w-heavy); }
+.dg .d-sub { fill: var(--muted); font-family: var(--mono); font-size: 10px; }
+.dg .d-arrow { fill: none; stroke: var(--edge-hi); stroke-width: 1.3; }
+.dg .d-arrow.focal { stroke: var(--act); stroke-width: 2; }
+.dg .d-head { fill: var(--edge-hi); }
+.dg .d-head.focal { fill: var(--act); }
+.dg .d-lbl { fill: var(--ink-2); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; }
+.dg .d-lbl-mask { fill: var(--paper); }
+.dg .d-legend { fill: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .12em; }
+.dg .d-rule { stroke: var(--edge); stroke-width: 1; }
+.dg .d-dot { fill: var(--ink); }
+.dg .d-lane-fill { fill: var(--panel); }
+.dg .d-lane-label { fill: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; }
+
+</style></head>
+<body><main class="wrap"><h1>How a photograph becomes one line</h1><figure class="diagram"><div class="scroll-x"><svg class="dg" viewBox="0 0 988 336" role="img" aria-labelledby="dg-pipe-title dg-pipe-desc" style="--dg-w:988px" xmlns="http://www.w3.org/2000/svg"><title id="dg-pipe-title">How a photograph becomes one line</title><desc id="dg-pipe-desc">Flowchart: a photo is sorted into landmark, object or skyline; each kind has its own way to separate the subject, then all three are thinned to a one-pixel skeleton, walked into strokes, chained into one pen path and written out as an SVG path that draws on scroll.</desc><line class="d-rule" x1="8" y1="280" x2="980" y2="280"/><rect class="d-box" x="8" y="292" width="24" height="14" rx="7"/><text class="d-legend" x="40" y="303">START / END</text><polygon class="d-box" points="157,291 169,299 157,307 145,299"/><text class="d-legend" x="177" y="303">DECISION</text><rect class="d-box" x="261" y="292" width="24" height="14" rx="3"/><text class="d-legend" x="293" y="303">STEP</text><circle class="d-dot" cx="361" cy="299" r="4"/><text class="d-legend" x="381" y="303">MERGE</text><rect class="d-box focal" x="444" y="292" width="24" height="14" rx="3"/><text class="d-legend" x="476" y="303">THE IDEA THAT MAKES IT ONE LINE</text><path class="d-arrow" d="M88,152 L112,152"/><polygon class="d-head" points="120,152 112,156 112,148"/><path class="d-arrow" d="M176,104 L176,76 Q176,68 184,68 L276,68"/><polygon class="d-head" points="284,68 276,72 276,64"/><path class="d-arrow" d="M232,152 L276,152"/><polygon class="d-head" points="284,152 276,156 276,148"/><path class="d-arrow" d="M176,200 L176,228 Q176,236 184,236 L276,236"/><polygon class="d-head" points="284,236 276,240 276,232"/><path class="d-arrow" d="M428,68 L464,68 Q472,68 472,76 L472,148"/><path class="d-arrow" d="M428,152 L468,152"/><path class="d-arrow" d="M428,236 L464,236 Q472,236 472,228 L472,156"/><path class="d-arrow" d="M476,152 L496,152"/><polygon class="d-head" points="504,152 496,156 496,148"/><path class="d-arrow" d="M608,152 L628,152"/><polygon class="d-head" points="636,152 628,156 628,148"/><path class="d-arrow focal" d="M740,152 L760,152"/><polygon class="d-head focal" points="768,152 760,156 760,148"/><path class="d-arrow focal" d="M888,152 L908,152"/><polygon class="d-head focal" points="916,152 908,156 908,148"/><rect class="d-lbl-mask" x="204" y="49" width="53" height="12" rx="2"/><text class="d-lbl" x="230" y="58" text-anchor="middle">LANDMARK</text><rect class="d-lbl-mask" x="235" y="131" width="41" height="12" rx="2"/><text class="d-lbl" x="256" y="140" text-anchor="middle">OBJECT</text><rect class="d-lbl-mask" x="206" y="217" width="47" height="12" rx="2"/><text class="d-lbl" x="230" y="226" text-anchor="middle">SKYLINE</text><rect class="d-mask" x="8" y="128" width="80" height="48" rx="24.0"/><rect class="d-box" x="8" y="128" width="80" height="48" rx="24.0"/><text class="d-name" x="48.0" y="156.0" text-anchor="middle">Photo</text><polygon class="d-mask" points="176,104.0 232.0,152 176,200.0 120.0,152"/><polygon class="d-box " points="176,104.0 232.0,152 176,200.0 120.0,152"/><text class="d-name" x="176" y="148" text-anchor="middle">What is</text><text class="d-name" x="176" y="164" text-anchor="middle">in it?</text><rect class="d-mask" x="284" y="40" width="144" height="56" rx="6"/><rect class="d-box " x="284" y="40" width="144" height="56" rx="6"/><text class="d-name" x="356.0" y="66.0" text-anchor="middle">Cut out from sky</text><text class="d-sub" x="356.0" y="82.0" text-anchor="middle">cv2.grabCut · box</text><rect class="d-mask" x="284" y="124" width="144" height="56" rx="6"/><rect class="d-box " x="284" y="124" width="144" height="56" rx="6"/><text class="d-name" x="356.0" y="150.0" text-anchor="middle">Cut from backdrop</text><text class="d-sub" x="356.0" y="166.0" text-anchor="middle">Otsu + grabCut</text><rect class="d-mask" x="284" y="208" width="144" height="56" rx="6"/><rect class="d-box " x="284" y="208" width="144" height="56" rx="6"/><text class="d-name" x="356.0" y="234.0" text-anchor="middle">Dark under bright</text><text class="d-sub" x="356.0" y="250.0" text-anchor="middle">Otsu · top edge</text><circle class="d-dot" cx="472" cy="152" r="4"/><rect class="d-mask" x="504" y="124" width="104" height="56" rx="6"/><rect class="d-box " x="504" y="124" width="104" height="56" rx="6"/><text class="d-name" x="556.0" y="150.0" text-anchor="middle">Skeleton</text><text class="d-sub" x="556.0" y="166.0" text-anchor="middle">Zhang–Suen</text><rect class="d-mask" x="636" y="124" width="104" height="56" rx="6"/><rect class="d-box " x="636" y="124" width="104" height="56" rx="6"/><text class="d-name" x="688.0" y="150.0" text-anchor="middle">Strokes</text><text class="d-sub" x="688.0" y="166.0" text-anchor="middle">graph walk</text><rect class="d-mask" x="768" y="124" width="120" height="56" rx="6"/><rect class="d-box focal" x="768" y="124" width="120" height="56" rx="6"/><text class="d-name" x="828.0" y="150.0" text-anchor="middle">One pen path</text><text class="d-sub" x="828.0" y="166.0" text-anchor="middle">nearest + 2-opt</text><rect class="d-mask" x="916" y="128" width="64" height="48" rx="24.0"/><rect class="d-box" x="916" y="128" width="64" height="48" rx="24.0"/><text class="d-name" x="948.0" y="156.0" text-anchor="middle">SVG</text></svg></div></figure></main></body></html>

@@ -1,0 +1,47 @@
+# Every PR and every push to main: the pages match their source, and every page passes the
+# page check (script errors, sideways scroll, overlapping blocks, accessibility) at 375 and 1280,
+# light and dark. Design-system engineer-Opus5.5-agent, 2026-11-09
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Pillow, pinned
+        run: python3 -m venv .venv && .venv/bin/pip install --quiet pillow==13.0.0
+      - name: Pages match their source
+        run: .venv/bin/python tools/check_build.py
+
+  pages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Playwright and axe, pinned
+        run: npm install --no-save --no-package-lock @playwright/test@1.63.0 @axe-core/playwright@4.14.0 && npx playwright install --with-deps chromium firefox webkit
+      - name: Page check
+        run: npx playwright test
+      - name: What failed
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: page-check
+          path: test-results/
+          if-no-files-found: ignore
