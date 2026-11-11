@@ -307,7 +307,7 @@
           ${done ? `<div class="why" tabindex="-1">${q.o.map((o, k) => `<p class="${k === q.a ? 'ok' : ''}"><span class="l">${L[k]}</span><span><b>${k === q.a ? 'Right.' : 'Wrong.'}</b> ${esc(o[1])}</span></p>`).join('')}</div>` : ''}</article>`;
       }).join('');
       const answered = Q.filter((q, i) => ans[i] != null), right = answered.filter(q => ans[Q.indexOf(q)] === q.a).length;
-      score.textContent = `${right} / ${Q.length}`;
+      score.textContent = `${right} right · ${answered.length} of ${Q.length} answered`;
       bar.style.width = (answered.length / Q.length) * 100 + '%';
     }
     list.addEventListener('click', e => {
