@@ -59,3 +59,34 @@ for (const page of PAGES) for (const width of WIDTHS) {
     expect(serious, 'accessibility').toEqual([]);
   });
 }
+
+// The quiz from first click to result: reasons, faded options, focus, the result after the last card.
+test('quiz shows the result after the last answer', async ({ page: tab }) => {
+  await tab.setViewportSize({ width: 375, height: 900 });
+  await tab.goto('/heavy-light-blog.html', { waitUntil: 'load' });
+  const box = tab.locator('[data-quiz="blog"]'), end = box.locator('.quiz-end');
+  const Q = JSON.parse(await box.locator('script[type="application/json"]').textContent());
+  await expect(box.locator('[data-total]')).toHaveText('4 questions');
+  await expect(end).toBeHidden();
+  for (const [i, q] of Q.entries()) {
+    const pick = i === 0 ? (q.a + 1) % q.o.length : q.a; // miss question 1 only
+    await box.locator(`.q[data-i="${i}"] button.o`).nth(pick).click();
+    if (i === 0) {
+      const card = box.locator('.q[data-i="0"]');
+      await expect(card.locator('.why .lead')).toContainText('Not quite.');
+      await expect(card.locator('.why b')).toHaveText(['Not quite.', ...(q.a < pick ? ['Right.', 'Your answer.'] : ['Your answer.', 'Right.'])]); // only two reasons keep a verdict
+      await expect(card.locator('button.o:disabled')).toHaveCount(q.o.length);
+      await expect(card.locator('.why')).toBeFocused();
+      await expect(end.locator('.l')).toHaveText('1 of 4 answered');
+    }
+  }
+  await expect(end).toBeFocused();
+  await expect(end.locator('.l')).toHaveText('Your result');
+  await expect(end.locator('.n')).toHaveText('3 of 4 right');
+  await expect(end.locator('.m')).toHaveText('You missed question 1.');
+  const { violations } = await new AxeBuilder({ page: tab }).include('[data-quiz="blog"]').analyze();
+  expect(violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => v.id), 'accessibility when finished').toEqual([]);
+  await end.locator('[data-reset]').click();
+  await expect(end).toBeHidden();
+  await expect(box.locator('button.o:disabled')).toHaveCount(0);
+});
