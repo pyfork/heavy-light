@@ -952,12 +952,9 @@ code { font-family: var(--mono); font-size: 0.86em; padding: 1px 5px; background
 /* quiz */
 .quiz-top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; margin-bottom: var(--s5); }
 .score { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; min-width: 0; }
-@media (max-width: 760px) { .score .bar { width: 72px; } }
 .chips-l { align-self: center; }
 .score > span:first-child, .chips-l { font-size: var(--fs-xs); font-weight: var(--w-label); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.score b { font-size: 28px; line-height: 32px; font-weight: var(--w-heavy); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
-.score .bar { position: relative; width: 120px; height: 6px; background: var(--panel-2); overflow: hidden; }
-.score .bar i, .pl-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--act); transition: width var(--t-base) var(--ease-out); }
+.pl-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--act); transition: width var(--t-base) var(--ease-out); }
 .quiz { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: var(--s5); align-items: start; }
 .q { display: grid; gap: var(--s4); padding: var(--s5); background: var(--panel); }
 .qh { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--muted); font-size: var(--fs-xs); font-weight: var(--w-heavy); font-variant-numeric: tabular-nums; }
@@ -965,19 +962,31 @@ code { font-family: var(--mono); font-size: 0.86em; padding: 1px 5px; background
 .opts { display: grid; gap: 8px; }
 .o { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; min-height: 48px; padding: 10px 12px; border: 1px solid var(--edge-hi); background: var(--field); color: var(--ink); text-align: left; font-size: var(--fs-s); line-height: 21px; font-weight: var(--w-light); }
 .o .l, .why .l { display: grid; place-items: center; width: 28px; height: 28px; background: var(--panel-2); font-size: var(--fs-xs); font-weight: var(--w-heavy); }
-.o:hover:not([aria-disabled]) { border-color: var(--link); background: var(--mint); }
-.o[aria-disabled] { cursor: default; }
+.o:hover:not(:disabled) { border-color: var(--link); background: var(--mint); }
+.o:disabled { cursor: default; }
+.q.done .o:not(.right, .wrong) { color: var(--muted); border-color: var(--edge); } /* options you did not touch fade, still 4.5:1 or more */
+.q.done .o:not(.right, .wrong) .l { color: var(--ink-2); }
 .o.right { border: 2px solid var(--ok); font-weight: var(--w-bold); }
 .o.right .l { background: var(--ok); color: var(--on-act); }
 .o.right .ico { color: var(--ok); stroke-width: 2.5; }
 .o.wrong { border: 2px dashed var(--bad); }
 .o.wrong .l { background: var(--bad); color: var(--paper); }
 .o.wrong .ico { color: var(--bad); stroke-width: 2.5; }
-.why { display: grid; gap: 10px; padding-top: var(--s4); border-top: 1px solid var(--edge); outline: none; }
+.why { display: grid; gap: 10px; padding-top: var(--s4); border-top: 1px solid var(--edge); }
+.why:focus { outline: 3px solid var(--focus); outline-offset: 8px; } /* focus is moved here by script after a click, so show it then too */
 .why p { display: grid; grid-template-columns: 28px 1fr; gap: 12px; color: var(--ink-2); font-size: var(--fs-s); line-height: 22px; font-weight: var(--w-light); }
-.why p b { color: var(--bad); font-weight: var(--w-heavy); }
+.why p b { color: var(--ink); font-weight: var(--w-heavy); }
 .why p.ok b { color: var(--ok); }
 .why p.ok { color: var(--ink); }
+.why p.mine b, .why p.lead b { color: var(--bad); }
+.why p.lead { display: block; color: var(--ink); font-weight: var(--w-body); }
+.why p.lead.ok b { color: var(--ok); }
+.quizbox .quiz-end { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: var(--s5); padding: var(--s5); background: var(--panel); }
+.quiz-end:focus { outline: 3px solid var(--focus); outline-offset: 4px; }
+.quizbox .quiz-end p:empty { display: none; }
+.quizbox .quiz-end .l { font-size: var(--fs-xs); line-height: 18px; font-weight: var(--w-label); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.quizbox .quiz-end .n { margin-top: 4px; font-size: 28px; line-height: 32px; font-weight: var(--w-heavy); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.quizbox .quiz-end .m { margin-top: 4px; font-size: var(--fs-s); line-height: 22px; font-weight: var(--w-light); color: var(--ink-2); }
 
 /* pick list */
 .picklist { display: grid; gap: var(--s5); }

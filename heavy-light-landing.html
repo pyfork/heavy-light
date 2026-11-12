@@ -961,12 +961,9 @@ code { font-family: var(--mono); font-size: 0.86em; padding: 1px 5px; background
 /* quiz */
 .quiz-top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; margin-bottom: var(--s5); }
 .score { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; min-width: 0; }
-@media (max-width: 760px) { .score .bar { width: 72px; } }
 .chips-l { align-self: center; }
 .score > span:first-child, .chips-l { font-size: var(--fs-xs); font-weight: var(--w-label); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.score b { font-size: 28px; line-height: 32px; font-weight: var(--w-heavy); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
-.score .bar { position: relative; width: 120px; height: 6px; background: var(--panel-2); overflow: hidden; }
-.score .bar i, .pl-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--act); transition: width var(--t-base) var(--ease-out); }
+.pl-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--act); transition: width var(--t-base) var(--ease-out); }
 .quiz { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: var(--s5); align-items: start; }
 .q { display: grid; gap: var(--s4); padding: var(--s5); background: var(--panel); }
 .qh { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--muted); font-size: var(--fs-xs); font-weight: var(--w-heavy); font-variant-numeric: tabular-nums; }
@@ -974,19 +971,31 @@ code { font-family: var(--mono); font-size: 0.86em; padding: 1px 5px; background
 .opts { display: grid; gap: 8px; }
 .o { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; min-height: 48px; padding: 10px 12px; border: 1px solid var(--edge-hi); background: var(--field); color: var(--ink); text-align: left; font-size: var(--fs-s); line-height: 21px; font-weight: var(--w-light); }
 .o .l, .why .l { display: grid; place-items: center; width: 28px; height: 28px; background: var(--panel-2); font-size: var(--fs-xs); font-weight: var(--w-heavy); }
-.o:hover:not([aria-disabled]) { border-color: var(--link); background: var(--mint); }
-.o[aria-disabled] { cursor: default; }
+.o:hover:not(:disabled) { border-color: var(--link); background: var(--mint); }
+.o:disabled { cursor: default; }
+.q.done .o:not(.right, .wrong) { color: var(--muted); border-color: var(--edge); } /* options you did not touch fade, still 4.5:1 or more */
+.q.done .o:not(.right, .wrong) .l { color: var(--ink-2); }
 .o.right { border: 2px solid var(--ok); font-weight: var(--w-bold); }
 .o.right .l { background: var(--ok); color: var(--on-act); }
 .o.right .ico { color: var(--ok); stroke-width: 2.5; }
 .o.wrong { border: 2px dashed var(--bad); }
 .o.wrong .l { background: var(--bad); color: var(--paper); }
 .o.wrong .ico { color: var(--bad); stroke-width: 2.5; }
-.why { display: grid; gap: 10px; padding-top: var(--s4); border-top: 1px solid var(--edge); outline: none; }
+.why { display: grid; gap: 10px; padding-top: var(--s4); border-top: 1px solid var(--edge); }
+.why:focus { outline: 3px solid var(--focus); outline-offset: 8px; } /* focus is moved here by script after a click, so show it then too */
 .why p { display: grid; grid-template-columns: 28px 1fr; gap: 12px; color: var(--ink-2); font-size: var(--fs-s); line-height: 22px; font-weight: var(--w-light); }
-.why p b { color: var(--bad); font-weight: var(--w-heavy); }
+.why p b { color: var(--ink); font-weight: var(--w-heavy); }
 .why p.ok b { color: var(--ok); }
 .why p.ok { color: var(--ink); }
+.why p.mine b, .why p.lead b { color: var(--bad); }
+.why p.lead { display: block; color: var(--ink); font-weight: var(--w-body); }
+.why p.lead.ok b { color: var(--ok); }
+.quizbox .quiz-end { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: var(--s5); padding: var(--s5); background: var(--panel); }
+.quiz-end:focus { outline: 3px solid var(--focus); outline-offset: 4px; }
+.quizbox .quiz-end p:empty { display: none; }
+.quizbox .quiz-end .l { font-size: var(--fs-xs); line-height: 18px; font-weight: var(--w-label); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.quizbox .quiz-end .n { margin-top: 4px; font-size: 28px; line-height: 32px; font-weight: var(--w-heavy); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.quizbox .quiz-end .m { margin-top: 4px; font-size: var(--fs-s); line-height: 22px; font-weight: var(--w-light); color: var(--ink-2); }
 
 /* pick list */
 .picklist { display: grid; gap: var(--s5); }
@@ -2133,40 +2142,57 @@ window.ART={"ae":{"w":1000,"h":1615,"d":"M47 1565L72 1565Q76 1565 80 1565L131 15
     if (box) { e.preventDefault(); box.focus(); box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); }
   });
 
-  /* ---------- quiz: pick an answer, then read why each option is right or wrong ---------- */
+  /* ---------- quiz: pick an answer, then read why; the result shows after the last question ---------- */
   $$('[data-quiz]').forEach(host => {
     const Q = JSON.parse($('script[type="application/json"]', host).textContent);
     const key = 'quiz-' + host.dataset.quiz, L = 'ABCD';
     let ans = {}; try { ans = JSON.parse(store.get(key) || '{}'); } catch (e) { ans = {}; }
     const topics = [...new Set(Q.map(q => q.topic))];
     let only = 'all';
-    const list = $('.quiz', host), score = $('[data-score]', host), bar = $('[data-bar]', host), chips = $('.chips', host);
+    const list = $('.quiz', host), total = $('[data-total]', host), end = $('.quiz-end', host), chips = $('.chips', host);
+    const [endL, endN, endM] = $$('.quiz-end p', host);
     if (chips && topics.length > 1) {
       chips.innerHTML = '<span class="chips-l" aria-hidden="true">Show:</span>' + ['all', ...topics].map(t => `<button type="button" aria-pressed="${t === 'all'}" data-t="${esc(t)}">${t === 'all' ? 'All' : esc(t)}</button>`).join('');
       chips.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; only = b.dataset.t; $$('button', chips).forEach(x => x.setAttribute('aria-pressed', String(x === b))); render(); });
     }
+    const shownQs = () => Q.map((q, i) => ({ ...q, i })).filter(q => only === 'all' || q.topic === only);
+    function reasons(q, got) {
+      const lead = got === q.a ? `<p class="lead ok"><b>Right.</b> You picked ${L[got]}.</p>`
+        : `<p class="lead"><b>Not quite.</b> You picked ${L[got]}. The answer is ${L[q.a]}.</p>`;
+      return lead + q.o.map((o, k) => {
+        const tag = k === q.a ? ['ok', 'Right.'] : k === got ? ['mine', 'Your answer.'] : ['', ''];
+        return `<p class="${tag[0]}"><span class="l">${L[k]}</span><span>${tag[1] ? `<b>${tag[1]}</b> ` : ''}${esc(o[1])}</span></p>`;
+      }).join('');
+    }
     function render() {
-      const shown = Q.map((q, i) => ({ ...q, i })).filter(q => only === 'all' || q.topic === only);
+      const shown = shownQs();
       list.innerHTML = shown.map(q => {
         const got = ans[q.i], done = got != null;
         return `<article class="q${done ? ' done' : ''}" data-i="${q.i}"><p class="qh"><span class="tag line">${esc(q.topic)}</span><span>${q.i + 1} / ${Q.length}</span></p>
           <h4 class="h3">${esc(q.q)}</h4>
-          <div class="opts" role="group" aria-label="Answers">${q.o.map((o, k) => `<button type="button" class="o${done && k === q.a ? ' right' : ''}${done && k === got && k !== q.a ? ' wrong' : ''}" data-k="${k}" ${done ? 'aria-disabled="true"' : ''}><span class="l">${L[k]}</span><span>${esc(o[0])}</span>${done && k === q.a ? icon('check') : done && k === got ? icon('x-mark') : ''}</button>`).join('')}</div>
-          ${done ? `<div class="why" tabindex="-1">${q.o.map((o, k) => `<p class="${k === q.a ? 'ok' : ''}"><span class="l">${L[k]}</span><span><b>${k === q.a ? 'Right.' : 'Wrong.'}</b> ${esc(o[1])}</span></p>`).join('')}</div>` : ''}</article>`;
+          <div class="opts" role="group" aria-label="Answers">${q.o.map((o, k) => `<button type="button" class="o${done && k === q.a ? ' right' : ''}${done && k === got && k !== q.a ? ' wrong' : ''}" data-k="${k}"${done ? ' disabled' : ''}><span class="l">${L[k]}</span><span>${esc(o[0])}</span>${done && k === q.a ? icon('check') : done && k === got ? icon('x-mark') : ''}</button>`).join('')}</div>
+          ${done ? `<div class="why" tabindex="-1">${reasons(q, got)}</div>` : ''}</article>`;
       }).join('');
-      const answered = Q.filter((q, i) => ans[i] != null), right = answered.filter(q => ans[Q.indexOf(q)] === q.a).length;
-      score.textContent = `${right} / ${Q.length}`;
-      bar.style.width = (answered.length / Q.length) * 100 + '%';
+      const answered = shown.filter(q => ans[q.i] != null), missed = answered.filter(q => ans[q.i] !== q.a).map(q => q.i + 1);
+      const finished = shown.length > 0 && answered.length === shown.length;
+      total.textContent = `${shown.length} question${shown.length === 1 ? '' : 's'}`;
+      end.hidden = answered.length === 0;
+      endL.textContent = finished ? 'Your result' : `${answered.length} of ${shown.length} answered`;
+      endN.textContent = finished ? `${shown.length - missed.length} of ${shown.length} right` : '';
+      endM.textContent = !finished ? '' : missed.length === 0 ? 'Every answer right.'
+        : `You missed question${missed.length > 1 ? 's' : ''} ${missed.length > 1 ? missed.slice(0, -1).join(', ') + ' and ' + missed.at(-1) : missed[0]}.`;
+      return finished;
     }
     list.addEventListener('click', e => {
-      const b = e.target.closest('button.o'); if (!b) return;
-      const q = b.closest('.q'), i = +q.dataset.i;
-      if (ans[i] != null) return;
-      ans[i] = +b.dataset.k; store.set(key, JSON.stringify(ans)); render();
-      $(`.q[data-i="${i}"] .why`, list)?.focus({ preventScroll: true });
-      $(`.q[data-i="${i}"]`, list)?.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+      const b = e.target.closest('button.o'); if (!b || b.disabled) return;
+      const i = +b.closest('.q').dataset.i;
+      ans[i] = +b.dataset.k; store.set(key, JSON.stringify(ans));
+      // focus goes where the eye should go next: the reasons, or the result after the last answer
+      const next = render() ? end : $(`.q[data-i="${i}"] .why`, list);
+      next.focus({ preventScroll: true });
+      next.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
     });
-    $('[data-reset]', host).addEventListener('click', () => { ans = {}; store.set(key, '{}'); render(); });
+    $('[data-reset]', host).addEventListener('click', () => { ans = {}; store.set(key, '{}'); render(); $('.o', list)?.focus(); });
     render();
   });
 

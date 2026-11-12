@@ -285,40 +285,57 @@
     if (box) { e.preventDefault(); box.focus(); box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); }
   });
 
-  /* ---------- quiz: pick an answer, then read why each option is right or wrong ---------- */
+  /* ---------- quiz: pick an answer, then read why; the result shows after the last question ---------- */
   $$('[data-quiz]').forEach(host => {
     const Q = JSON.parse($('script[type="application/json"]', host).textContent);
     const key = 'quiz-' + host.dataset.quiz, L = 'ABCD';
     let ans = {}; try { ans = JSON.parse(store.get(key) || '{}'); } catch (e) { ans = {}; }
     const topics = [...new Set(Q.map(q => q.topic))];
     let only = 'all';
-    const list = $('.quiz', host), score = $('[data-score]', host), bar = $('[data-bar]', host), chips = $('.chips', host);
+    const list = $('.quiz', host), total = $('[data-total]', host), end = $('.quiz-end', host), chips = $('.chips', host);
+    const [endL, endN, endM] = $$('.quiz-end p', host);
     if (chips && topics.length > 1) {
       chips.innerHTML = '<span class="chips-l" aria-hidden="true">Show:</span>' + ['all', ...topics].map(t => `<button type="button" aria-pressed="${t === 'all'}" data-t="${esc(t)}">${t === 'all' ? 'All' : esc(t)}</button>`).join('');
       chips.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; only = b.dataset.t; $$('button', chips).forEach(x => x.setAttribute('aria-pressed', String(x === b))); render(); });
     }
+    const shownQs = () => Q.map((q, i) => ({ ...q, i })).filter(q => only === 'all' || q.topic === only);
+    function reasons(q, got) {
+      const lead = got === q.a ? `<p class="lead ok"><b>Right.</b> You picked ${L[got]}.</p>`
+        : `<p class="lead"><b>Not quite.</b> You picked ${L[got]}. The answer is ${L[q.a]}.</p>`;
+      return lead + q.o.map((o, k) => {
+        const tag = k === q.a ? ['ok', 'Right.'] : k === got ? ['mine', 'Your answer.'] : ['', ''];
+        return `<p class="${tag[0]}"><span class="l">${L[k]}</span><span>${tag[1] ? `<b>${tag[1]}</b> ` : ''}${esc(o[1])}</span></p>`;
+      }).join('');
+    }
     function render() {
-      const shown = Q.map((q, i) => ({ ...q, i })).filter(q => only === 'all' || q.topic === only);
+      const shown = shownQs();
       list.innerHTML = shown.map(q => {
         const got = ans[q.i], done = got != null;
         return `<article class="q${done ? ' done' : ''}" data-i="${q.i}"><p class="qh"><span class="tag line">${esc(q.topic)}</span><span>${q.i + 1} / ${Q.length}</span></p>
           <h4 class="h3">${esc(q.q)}</h4>
-          <div class="opts" role="group" aria-label="Answers">${q.o.map((o, k) => `<button type="button" class="o${done && k === q.a ? ' right' : ''}${done && k === got && k !== q.a ? ' wrong' : ''}" data-k="${k}" ${done ? 'aria-disabled="true"' : ''}><span class="l">${L[k]}</span><span>${esc(o[0])}</span>${done && k === q.a ? icon('check') : done && k === got ? icon('x-mark') : ''}</button>`).join('')}</div>
-          ${done ? `<div class="why" tabindex="-1">${q.o.map((o, k) => `<p class="${k === q.a ? 'ok' : ''}"><span class="l">${L[k]}</span><span><b>${k === q.a ? 'Right.' : 'Wrong.'}</b> ${esc(o[1])}</span></p>`).join('')}</div>` : ''}</article>`;
+          <div class="opts" role="group" aria-label="Answers">${q.o.map((o, k) => `<button type="button" class="o${done && k === q.a ? ' right' : ''}${done && k === got && k !== q.a ? ' wrong' : ''}" data-k="${k}"${done ? ' disabled' : ''}><span class="l">${L[k]}</span><span>${esc(o[0])}</span>${done && k === q.a ? icon('check') : done && k === got ? icon('x-mark') : ''}</button>`).join('')}</div>
+          ${done ? `<div class="why" tabindex="-1">${reasons(q, got)}</div>` : ''}</article>`;
       }).join('');
-      const answered = Q.filter((q, i) => ans[i] != null), right = answered.filter(q => ans[Q.indexOf(q)] === q.a).length;
-      score.textContent = `${right} / ${Q.length}`;
-      bar.style.width = (answered.length / Q.length) * 100 + '%';
+      const answered = shown.filter(q => ans[q.i] != null), missed = answered.filter(q => ans[q.i] !== q.a).map(q => q.i + 1);
+      const finished = shown.length > 0 && answered.length === shown.length;
+      total.textContent = `${shown.length} question${shown.length === 1 ? '' : 's'}`;
+      end.hidden = answered.length === 0;
+      endL.textContent = finished ? 'Your result' : `${answered.length} of ${shown.length} answered`;
+      endN.textContent = finished ? `${shown.length - missed.length} of ${shown.length} right` : '';
+      endM.textContent = !finished ? '' : missed.length === 0 ? 'Every answer right.'
+        : `You missed question${missed.length > 1 ? 's' : ''} ${missed.length > 1 ? missed.slice(0, -1).join(', ') + ' and ' + missed.at(-1) : missed[0]}.`;
+      return finished;
     }
     list.addEventListener('click', e => {
-      const b = e.target.closest('button.o'); if (!b) return;
-      const q = b.closest('.q'), i = +q.dataset.i;
-      if (ans[i] != null) return;
-      ans[i] = +b.dataset.k; store.set(key, JSON.stringify(ans)); render();
-      $(`.q[data-i="${i}"] .why`, list)?.focus({ preventScroll: true });
-      $(`.q[data-i="${i}"]`, list)?.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+      const b = e.target.closest('button.o'); if (!b || b.disabled) return;
+      const i = +b.closest('.q').dataset.i;
+      ans[i] = +b.dataset.k; store.set(key, JSON.stringify(ans));
+      // focus goes where the eye should go next: the reasons, or the result after the last answer
+      const next = render() ? end : $(`.q[data-i="${i}"] .why`, list);
+      next.focus({ preventScroll: true });
+      next.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
     });
-    $('[data-reset]', host).addEventListener('click', () => { ans = {}; store.set(key, '{}'); render(); });
+    $('[data-reset]', host).addEventListener('click', () => { ans = {}; store.set(key, '{}'); render(); $('.o', list)?.focus(); });
     render();
   });
 
