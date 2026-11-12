@@ -1,7 +1,7 @@
 # Every PR: does it change how any page looks? This run photographs main's pages and the PR's pages
 # on the same machine (4 pages x 375 and 1280 x light and dark = 16 pictures each) and compares them
 # pixel for pixel. Nothing is stored in the repo: main is the approved look.
-# Same look: green. Changed look: red, with before, after and difference in the "screens-diff" download,
+# Same look: green. Changed look: red, with before beside after, cropped and shrunk, in the "screens-diff" download,
 # until the owner adds the label looks-ok. A new push clears that label, so each change is approved
 # as pushed. A label added by anyone but the owner doesn't count.
 # Design-system engineer-Opus5.5-agent, 2026-11-09
@@ -52,12 +52,15 @@ jobs:
         id: compare
         continue-on-error: true
         run: SCREENS_SIDE=head npx playwright test -c playwright.screens.config.mjs --update-snapshots=none
-      - name: Before, after and difference
+      - name: Shrink the pictures
+        if: steps.compare.outcome == 'failure'
+        run: pip install --quiet pillow && python tools/screens_crop.py
+      - name: Before beside after
         if: steps.compare.outcome == 'failure'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: screens-diff
-          path: test-results/
+          path: screens-crop/
           retention-days: 14
       - name: A changed look needs the owner's label
         if: steps.compare.outcome == 'failure'
