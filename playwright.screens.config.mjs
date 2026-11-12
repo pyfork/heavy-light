@@ -10,7 +10,8 @@ export default defineConfig({
   reporter: [['list']],
   forbidOnly: !!process.env.CI,
   use: { baseURL: 'http://127.0.0.1:8847', browserName: 'chromium' },
-  expect: { toHaveScreenshot: { maxDiffPixels: 0, animations: 'disabled', caret: 'hide' } },
+  // 30 s: full-page shots of tall pages take over the 5 s default on a runner. Design-system-builder-Opus5.5-agent, 2026-11-11
+  expect: { timeout: 30_000, toHaveScreenshot: { maxDiffPixels: 0, animations: 'disabled', caret: 'hide' } },
   webServer: {
     command: 'python3 -m http.server 8847 --bind 127.0.0.1',
     url: 'http://127.0.0.1:8847/heavy-light-system.html',
