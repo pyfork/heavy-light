@@ -187,7 +187,7 @@ Heroicons 2.2.0 outline only (MIT). 24px grid, 1.5 stroke, shown at 20px; ticks 
 Two options, side by side on the system page:
 
 - **Option A, one stroke, flat colour:** for one subject. Described below.
-- **Option B, skyline horizon:** for a row of places. Solid ink skyline silhouettes (Riyadh, Abu Dhabi, Dubai) on one ground strip with the city names reversed out in white, rising from the ground as you scroll. Pins are a green square on a dashed stem with a 900 label and a 300 line, on two alternating heights, flipped to the left near the right edge, airport code only on phones. Markup: `<div class="horizon" data-skylines="riyadh,abudhabi,dubai" data-labels="{...}" data-pins="[...]">`. The silhouettes are SVG; pins and names are HTML so they stay readable at any width.
+- **Option B, skyline horizon:** optional, off by default. Trace and show a skyline only when the brief asks for one. For a row of places. Solid ink skyline silhouettes (Riyadh, Abu Dhabi, Dubai) on one ground strip with the city names reversed out in white, rising from the ground as you scroll. Pins are a green square on a dashed stem with a 900 label and a 300 line, on two alternating heights, flipped to the left near the right edge, airport code only on phones. Markup: `<div class="horizon" data-skylines="riyadh,abudhabi,dubai" data-labels="{...}" data-pins="[...]">`. The silhouettes are SVG; pins and names are HTML so they stay readable at any width.
 
 Option A: every picture is one continuous stroke over offset blocks of flat colour, traced from a real photo with OpenCV (`tools/trace.py`):
 
