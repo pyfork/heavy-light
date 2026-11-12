@@ -1,0 +1,12 @@
+# Risky paths: a PR that touches any of these is risky. The owner reviews and merges it.
+# Any other PR is routine and may auto-merge once rebuild, pages and screens are green:
+#   gh pr merge <n> --auto --squash
+# One path per line, same spelling as .github/CODEOWNERS. Keep the two identical.
+# Why: README-brief-repo-rules.md
+/.github/
+/tests/
+/tools/
+/playwright.config.mjs
+/playwright.screens.config.mjs
+/docs-public/guard-data/
+/README-brief-repo-rules.md

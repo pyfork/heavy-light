@@ -43,6 +43,10 @@ npx playwright test
 
 When a PR changes the look on purpose, the owner checks `screens-diff` and adds the `looks-ok` label. The check runs again and passes. A label added by anyone else doesn't count.
 
+## Who reviews what
+
+The owner reviews risky files only; every other PR merges on three green checks. See [README-brief-repo-rules.md](README-brief-repo-rules.md) for the rule, why, and what it costs.
+
 ## Rebuild
 
 After editing `src/`, only Pillow is needed:

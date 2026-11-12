@@ -1,2 +1,10 @@
-# The owner reviews every file.
-* @pyfork
+# Risky paths: the owner reviews these. Everything else has no owner, so a PR that touches only
+# those files needs no review, just the three green checks. Keep this list identical to
+# docs-public/guard-data/risk-map.txt. Why and what it costs: README-brief-repo-rules.md
+/.github/ @pyfork
+/tests/ @pyfork
+/tools/ @pyfork
+/playwright.config.mjs @pyfork
+/playwright.screens.config.mjs @pyfork
+/docs-public/guard-data/ @pyfork
+/README-brief-repo-rules.md @pyfork
