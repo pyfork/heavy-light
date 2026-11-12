@@ -31,7 +31,7 @@ Every pull request runs `.github/workflows/checks.yml` and `.github/workflows/sc
 
 - **Rebuild check:** `python tools/check_build.py` rebuilds the pages and fails if the committed ones are out of date.
 - **Page check:** `npx playwright test` opens each page in Chromium, Firefox and WebKit (Safari's engine), at 375 and 1280 wide, light and dark, and fails on a script error, sideways scroll, overlapping blocks, or a serious accessibility problem (axe).
-- **Screens:** photographs `main`'s pages and the PR's pages in the same run (4 pages × 375 and 1280 × light and dark) and compares them pixel for pixel. Same look: green. Changed look: red, with before, after and difference in the run's `screens-diff` download, until the owner adds the `looks-ok` label. A new push clears the label. No pictures are stored: `main` is the approved look. Photos are masked, the clock is fixed and motion reduced.
+- **Screens:** photographs `main`'s pages and the PR's pages in the same run (4 pages × 375 and 1280 × light and dark) and compares them pixel for pixel. Same look: green. Changed look: red, with before beside after, cropped and shrunk, in the run's `screens-diff` download, until the owner adds the `looks-ok` label. A new push clears the label. No pictures are stored: `main` is the approved look. Photos are masked, the clock is fixed and motion reduced.
 
 To run the page check locally:
 
